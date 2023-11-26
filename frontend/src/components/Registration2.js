@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 
 function Registration2() {
-
     useEffect(() => {
         if (localStorage.getItem('reg-form-step-1') === null) {
             window.location = 'registration1';
@@ -23,7 +22,10 @@ function Registration2() {
             if (e.checked) {
                 console.log(e.value);
             }
-        })
+        });
+
+        // TODO: implement registration fetch in context/Data.js file and call it here with all parameters
+        // after fetch, delete step-1 from localStorage
     }
 
     return (
