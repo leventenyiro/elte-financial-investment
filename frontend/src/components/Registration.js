@@ -10,13 +10,51 @@ function Login() {
     const handleRegistration = async (e) => {
         e.preventDefault();
 
+        // remove existing error messages
+        document.querySelectorAll('.is-invalid').forEach(element => {
+            element.classList.remove('is-invalid');
+        });
+
+        // validation
         if (username === '') { // this is the way to add error
             document.querySelector('#inputUsername').classList.add('is-invalid');
+            return;
         }
+
+        if (email === '') { // this is the way to add error
+            document.querySelector('#inputEmail').classList.add('is-invalid');
+            return;
+        }
+
+        if (phoneNumber === '') { // this is the way to add error
+            document.querySelector('#inputPhoneNumber').classList.add('is-invalid');
+            return;
+        }
+
+        if (password === '') { // this is the way to add error
+            document.querySelector('#inputPassword').classList.add('is-invalid');
+            return;
+        }
+
+        if (passwordAgain === '' || password !== passwordAgain) { // this is the way to add error
+            document.querySelector('#inputPasswordAgain').classList.add('is-invalid');
+            return;
+        }
+    
+        // save collected data to local storage
+        localStorage.setItem("reg-form-step-1", JSON.stringify({
+            username: username,
+            email: email,
+            phoneNumber: phoneNumber,
+            password: password,
+            passwordAgain: passwordAgain
+        }))
+
+        // get data from local storage this method
+        // const data = JSON.parse(localStorage.getItem("reg-form-step-1")); 
         // const res = await Data.Registration(username, password);
 
-        if (true) // everything correct - then save temporary into localstorage
-            window.location = '/registration2';
+        window.location = '/registration2';
     }
 
     return (
