@@ -37,7 +37,7 @@ function Login() {
 
                     <div className="row d-flex align-items-center">
                         <div className="col-7">
-                            <a href="/registration">I don't have profile yet</a>
+                            <a href="/registration1">I don't have profile yet</a>
                         </div>
                         <div className="col-5 text-end">
                             <button className="btn btn-primary">Login</button>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Login() {
+function Registration1() {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
@@ -10,38 +10,35 @@ function Login() {
     const handleRegistration = async (e) => {
         e.preventDefault();
 
-        // remove existing error messages
         document.querySelectorAll('.is-invalid').forEach(element => {
             element.classList.remove('is-invalid');
         });
 
-        // validation
-        if (username === '') { // this is the way to add error
+        if (username === '') {
             document.querySelector('#inputUsername').classList.add('is-invalid');
             return;
         }
 
-        if (email === '') { // this is the way to add error
+        if (email === '') {
             document.querySelector('#inputEmail').classList.add('is-invalid');
             return;
         }
 
-        if (phoneNumber === '') { // this is the way to add error
+        if (phoneNumber === '') {
             document.querySelector('#inputPhoneNumber').classList.add('is-invalid');
             return;
         }
 
-        if (password === '') { // this is the way to add error
+        if (password === '') {
             document.querySelector('#inputPassword').classList.add('is-invalid');
             return;
         }
 
-        if (passwordAgain === '' || password !== passwordAgain) { // this is the way to add error
+        if (passwordAgain === '' || password !== passwordAgain) {
             document.querySelector('#inputPasswordAgain').classList.add('is-invalid');
             return;
         }
     
-        // save collected data to local storage
         localStorage.setItem("reg-form-step-1", JSON.stringify({
             username: username,
             email: email,
@@ -106,4 +103,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Registration1;
