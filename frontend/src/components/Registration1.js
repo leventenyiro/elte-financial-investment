@@ -1,11 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Registration1() {
-    const [username, setUsername] = useState('');
+    const [firstname, setFirstname] = useState('');
+    const [lastname, setLastname] = useState('');
     const [email, setEmail] = useState('');
-    const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
+
+    // check localStorage state
+    useEffect(() => {
+        if(localStorage.getItem('reg-form-step-1')) {
+            const data = JSON.parse(localStorage.getItem('reg-form-step-1'));
+
+            console.log(JSON.stringify(data))
+
+            // set the saved values
+            setFirstname(data.firstname);
+            setLastname(data.lastname);
+            setEmail(data.email);
+            setPassword(data.password);
+            setPasswordAgain(data.passwordAgain);
+        } 
+    }, [])
 
     const handleRegistration = async (e) => {
         e.preventDefault();
@@ -14,18 +30,18 @@ function Registration1() {
             element.classList.remove('is-invalid');
         });
 
-        if (username === '') {
-            document.querySelector('#inputUsername').classList.add('is-invalid');
+        if (firstname === '') {
+            document.querySelector('#inputFirstname').classList.add('is-invalid');
+            return;
+        }
+
+        if (lastname === '') {
+            document.querySelector('#inputLastname').classList.add('is-invalid');
             return;
         }
 
         if (email === '') {
             document.querySelector('#inputEmail').classList.add('is-invalid');
-            return;
-        }
-
-        if (phoneNumber === '') {
-            document.querySelector('#inputPhoneNumber').classList.add('is-invalid');
             return;
         }
 
@@ -40,16 +56,12 @@ function Registration1() {
         }
     
         localStorage.setItem("reg-form-step-1", JSON.stringify({
-            username: username,
+            firstname: firstname,
+            lastname: lastname,
             email: email,
-            phoneNumber: phoneNumber,
             password: password,
             passwordAgain: passwordAgain
         }))
-
-        // get data from local storage this method
-        // const data = JSON.parse(localStorage.getItem("reg-form-step-1")); 
-        // const res = await Data.Registration(username, password);
 
         window.location = '/registration2';
     }
@@ -59,22 +71,24 @@ function Registration1() {
             <div className="col-12 col-md-6">
                 <h1>Create my profile</h1>
                 <form onSubmit={handleRegistration}>
-                    <div className="mb-4">
-                        <label htmlFor="inputUsername" className="form-label">Username</label>
-                        <input type="text" className="form-control" id="inputUsername" name="username" value={username} onChange={e => setUsername(e.target.value)} />
-                        <div className="invalid-feedback">Username is required</div>
+                    <div className="row">
+                        <div className="col-lg-6 mb-4">
+                            <label htmlFor="inputFirstname" className="form-label">Firstname</label>
+                            <input type="text" className="form-control" id="inputFirstname" name="firstname" value={firstname} onChange={e => setFirstname(e.target.value)} />
+                            <div className="invalid-feedback">Firstname is required</div>
+                        </div>
+
+                        <div className="col-lg-6 mb-4">
+                            <label htmlFor="inputLastname" className="form-label">Lastname</label>
+                            <input type="text" className="form-control" id="inputLastname" name="lastname" value={lastname} onChange={e => setLastname(e.target.value)} />
+                            <div className="invalid-feedback">Lastname is required</div>
+                        </div>
                     </div>
 
                     <div className="mb-4">
                         <label htmlFor="inputEmail" className="form-label">Email</label>
                         <input type="email" className="form-control" id="inputEmail" name="email" value={email} onChange={e => setEmail(e.target.value)} />
                         <div className="invalid-feedback">Email is required</div>
-                    </div>
-
-                    <div className="mb-4">
-                        <label htmlFor="inputPhoneNumber" className="form-label">Phone number</label>
-                        <input type="tel" className="form-control" id="inputPhoneNumber" name="phoneNumber" value={phoneNumber} onChange={e => setPhoneNumber(e.target.value)} />
-                        <div className="invalid-feedback">Phone number is required</div>
                     </div>
 
                     <div className="mb-4">
