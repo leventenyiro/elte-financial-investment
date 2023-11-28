@@ -1,0 +1,51 @@
+---------------------------------------------------------------------------------
+USER
+---------------------------------------------------------------------------------
+POST  /user/registration REGISZTRACIO
+    - ha okes: 200
+    - ha hianyos: 422
+    - ha nem hianyos, de nem jo(k) az adat(ok): 500
+POST  /user/login BEJELENTKEZES
+    - ha okes: 200 + TOKEN
+    - ha hianyos: 422
+    - ha nem hianyos, de nem jo(k) az adat(ok): 500
+GET   /user/me SAJAT ADATOK LEKERESE (tokkennel)
+    - ha okes: 200 + adatok (pw nelkul)
+    - ha nincs token: 422
+    - ha nem jo a token: 500
+PATCH /user/me SAJAT ADATOK UPDATELESE (token+adatok)
+    - ha okes: 200
+    - ha hianyos/nem megfelelo: 422
+    - ha magaval az adatokkal van valami problema: 500
+
+POST /user/tracking ????
+
+---------------------------------------------------------------------------------
+NEWS
+---------------------------------------------------------------------------------
+
+GET /news/:topic HIREK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
+    - ha okes: 200 + HIREK
+    - ha hianyos: 422
+    - ha nem jo az adat: 500
+
+----------------------------------------------------------------------------------
+INVESTMENT
+----------------------------------------------------------------------------------
+
+GET /investment/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
+    ...
+GET /investment/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
+    ...
+GET /investment/:date HETI AJANLAT LEKERESE DATUM ALAPJAN (FORMATUM:  { date: "2020-06-19" })
+
+----------------------------------------------------------------------------------
+MATERIAL / OKTATASI ANYAGOK
+----------------------------------------------------------------------------------
+
+GET /material/ OSSZES OKTATASI ANYAG LEKERESE
+    ...
+
+GET /quiz/:matId KVIZEK LEKERESEK OKTATASI ANYAG ID-JE ALAPJAN
+    ...
+
