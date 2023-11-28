@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function Registration1() {
     const [username, setUsername] = useState('');
@@ -6,6 +6,22 @@ function Registration1() {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
+
+    // check localStorage state
+    useEffect(() => {
+        if(localStorage.getItem('reg-form-step-1')) {
+            const data = JSON.parse(localStorage.getItem('reg-form-step-1'));
+
+            console.log(JSON.stringify(data))
+
+            // set the saved values
+            setUsername(data.username);
+            setEmail(data.email);
+            setPhoneNumber(data.phoneNumber);
+            setPassword(data.password);
+            setPasswordAgain(data.passwordAgain);
+        } 
+    }, [])
 
     const handleRegistration = async (e) => {
         e.preventDefault();

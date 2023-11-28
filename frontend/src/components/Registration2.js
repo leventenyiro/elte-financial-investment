@@ -1,31 +1,208 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Data from "../data/Data";
+
 
 function Registration2() {
+
+    // store questions, answers and validaton states
+    const [questionData, setQuestionData] = useState([
+        {
+            id: "q1",
+            label: "For how long do you plan to invest or save financially?",
+            options: [
+                { value: "Short-term goals" },
+                { value: "Medium-term goals" },
+                { value: "Long-term goals" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q2",
+            label: "What financial goals do you want to focus on?",
+            options: [
+                { value: "Travel" },
+                { value: "Home purchase" },
+                { value: "Retirement" },
+                { value: "Emergency fund" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q3",
+            label: "How willing are you to take risks in your investments?",
+            options: [
+                { value: "Low risk" },
+                { value: "Medium risk" },
+                { value: "High risk" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q4",
+            label: "How important is stability and security in your financial decisions?",
+            options: [
+                { value: "Not important" },
+                { value: "Less important" },
+                { value: "Important" },
+                { value: "Very important" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q5",
+            label: "What is your current income situation?",
+            options: [
+                { value: "Variable" },
+                { value: "Stable" },
+                { value: "Growing" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q6",
+            label: "From which sources does your income come?",
+            options: [
+                { value: "Salary" },
+                { value: "Investment returns" },
+                { value: "Passive income sources" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q7",
+            label: "Which life stage are you currently in?",
+            options: [
+                { value: "Student" },
+                { value: "Recent graduate" },
+                { value: "Middle-aged" },
+                { value: "Approaching retirement" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q8",
+            label: "What important life events are you preparing for in the near future?",
+            options: [
+                { value: "Career building" },
+                { value: "Job market transition" },
+                { value: "Starting a family" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q9",
+            label: "What experience do you have in the field of investments?",
+            options: [
+                { value: "Beginner" },
+                { value: "Experienced" },
+                { value: "Long-term goals" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q10",
+            label: "If you have had previous investments, what types were they, and what results did you achieve with them?",
+            options: [
+                { value: "Conservative, low returns" },
+                { value: "Balanced, moderate returns" },
+                { value: "Riskier, high returns" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q11",
+            label: "How aware are you of the current market environment and economic trends?",
+            options: [
+                { value: "Not aware" },
+                { value: "Partially aware" },
+                { value: "Well-informed" },
+                { value: "Very well-informed" },
+            ],
+            validationStatus: false,
+        },
+
+        {
+            id: "q12",
+            label: "What factors influence your financial decisions in the current market situation?",
+            options: [
+                { value: "Financial trends" },
+                { value: "Investment opportunities" },
+                { value: "Economic stability" },
+                { value: "Inflation and interest rates" },
+            ],
+            validationStatus: false,
+        },
+    ]);
+
+    const [surveyAnswers, setSurveyAnswers] = useState({}); // store the selected answers
+    
     useEffect(() => {
         if (localStorage.getItem('reg-form-step-1') === null) {
             window.location = 'registration1';
         }
     });
 
+    // handle validation
+    const handleValidation = (questionId) => {
+
+        // check the question's checked state
+        const selectedOption = document.querySelector(`input[name=${questionId}]:checked`);
+        
+        if (!selectedOption) {
+            setQuestionData((prevData) =>
+            prevData.map((question) =>
+                question.id === questionId ? { ...question, validationStatus: true } : question
+            )
+            );
+        } else {
+            setQuestionData((prevData) =>
+            prevData.map((question) =>
+                question.id === questionId ? { ...question, validationStatus: false } : question
+            )
+            );
+        }
+    };
+
     const handleRegistration = async (e) => {
         e.preventDefault();
 
-        // remove existing error messages
-        document.querySelectorAll('.is-invalid').forEach(element => {
-            element.classList.remove('is-invalid');
-        });
-
-        // Comment to Abel: I added is-invalid to 1st question, to see an example, how to make it invalid. You have to make it dynamically
-
-        // get value
-        document.querySelectorAll('.form-check-input').forEach((e) => {
-            if (e.checked) {
-                console.log(e.value);
+        // create error messages if a radio button section is not filled
+        questionData.forEach((question) => {
+            handleValidation(question.id); // validate each question on submit
+            const selectedOption = document.querySelector(`input[name=${question.id}]:checked`);
+        
+            if (selectedOption) {
+                const label = document.querySelector(`label[for=${selectedOption.id}]`);
+                setSurveyAnswers((prevAnswers) => ({ ...prevAnswers, [`answer${question.id}`]: label.textContent }));
             }
         });
 
-        // TODO: implement registration fetch in context/Data.js file and call it here with all parameters
-        // after fetch, delete step-1 from localStorage
+        // check if all questions already filled
+
+        console.log(JSON.stringify(questionData, null, 2))
+
+        const invalidQuestions = questionData.find((question) => question.validationStatus === true);
+        if(invalidQuestions) return console.error("I found unanswered questions")
+
+        try {
+            const firstStepData = JSON.parse(localStorage.getItem('reg-form-step-1'));
+            await Data.userRegistration(firstStepData.username, firstStepData.email, firstStepData.password, firstStepData.phoneNumber, surveyAnswers); // trigger registration function
+
+            // handle success
+            localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
+        } catch (error) {
+            console.error("Error during registration:", error.message);
+        }
     }
 
     return (
@@ -34,304 +211,35 @@ function Registration2() {
                 <h1>...and now share some info with us</h1>
                 <p>This will help us to provide you with more personalised investment advice and educational materials.</p>
                 <form onSubmit={handleRegistration}>
-                    <h2 className="mt-5"><span className="question-number">1</span>For how long do you plan to invest or save financially?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input is-invalid" type="radio" name="q1" id="q1a1" value={1} />
-                        <label className="form-check-label" htmlFor="q1a1">
-                            Short-term goals
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input is-invalid" type="radio" name="q1" id="q1a2" value={3} />
-                        <label className="form-check-label" htmlFor="q1a2">
-                            Medium-term goals
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input is-invalid" type="radio" name="q1" id="q1a3" value={5} />
-                        <label className="form-check-label" htmlFor="q1a3">
-                            Long-term goals
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
 
-                    <hr className="my-5" />
+                {questionData.map((question, index) => (
+                    <>
+                        <hr className="my-5" />
+                        <div key={question.id} className="form-group" onChange={() => handleValidation(question.id)}>
+                            <h2>
+                            <span className="question-number">{index + 1}</span>
+                            {question.label}
+                            </h2>
+                            {question.options.map((option, index) => (
+                            <div key={index} className="form-check">
+                                <input
+                                className={`form-check-input ${question.validationStatus ? "is-invalid" : ""}`}
+                                type="radio"
+                                name={question.id}
+                                id={`${question.id}-${index}`}
+                                value={option.value}
+                                />
+                                <label className="form-check-label" htmlFor={`${question.id}-${index}`}>
+                                {option.value}
+                                </label>
+                            </div>
+                            ))}
 
-                    <h2><span className="question-number">2</span>What financial goals do you want to focus on?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q2" id="q2a1" value={1} />
-                        <label className="form-check-label" htmlFor="q2a1">
-                            Travel
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q2" id="q2a2" value={2} />
-                        <label className="form-check-label" htmlFor="q2a2">
-                            Home purchase
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q2" id="q2a3" value={3} />
-                        <label className="form-check-label" htmlFor="q2a3">
-                            Retirement
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q2" id="q2a4" value={4} />
-                        <label className="form-check-label" htmlFor="q2a4">
-                            Emergency fund
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">3</span>How willing are you to take risks in your investments?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q3" id="q3a1" value={1} />
-                        <label className="form-check-label" htmlFor="q3a1">
-                            Low risk
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q3" id="q3a2" value={3} />
-                        <label className="form-check-label" htmlFor="q3a2">
-                            Medium risk
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q3" id="q3a3" value={5} />
-                        <label className="form-check-label" htmlFor="q3a3">
-                            High risk
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">4</span>How important is stability and security in your financial decisions?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q4" id="q4a1" value={1} />
-                        <label className="form-check-label" htmlFor="q4a1">
-                            Not important
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q4" id="q4a2" value={2} />
-                        <label className="form-check-label" htmlFor="q4a2">
-                            Less important
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q4" id="q4a3" value={3} />
-                        <label className="form-check-label" htmlFor="q4a3">
-                            Important
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q4" id="q4a4" value={5} />
-                        <label className="form-check-label" htmlFor="q4a4">
-                            Very important
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">5</span>What is your current income situation?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q5" id="q5a1" value={2} />
-                        <label className="form-check-label" htmlFor="q5a1">
-                            Variable
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q5" id="q5a2" value={3} />
-                        <label className="form-check-label" htmlFor="q5a2">
-                            Stable
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q5" id="q5a3" value={4} />
-                        <label className="form-check-label" htmlFor="q5a3">
-                            Growing
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">6</span>From which sources does your income come?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q6" id="q6a1" value={3} />
-                        <label className="form-check-label" htmlFor="q6a1">
-                            Salary
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q6" id="q6a2" value={4} />
-                        <label className="form-check-label" htmlFor="q6a2">
-                            Investment returns
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q6" id="q6a3" value={5} />
-                        <label className="form-check-label" htmlFor="q6a3">
-                            Passive income sources
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">7</span>Which life stage are you currently in?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q7" id="q7a1" value={1} />
-                        <label className="form-check-label" htmlFor="q7a1">
-                            Student
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q7" id="q7a2" value={2} />
-                        <label className="form-check-label" htmlFor="q7a2">
-                            Recent graduate
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q7" id="q7a3" value={3} />
-                        <label className="form-check-label" htmlFor="q7a3">
-                            Middle-aged
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q7" id="q7a4" value={4} />
-                        <label className="form-check-label" htmlFor="q7a4">
-                            Approaching retirement
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">8</span>What important life events are you preparing for in the near future?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q8" id="q8a1" value={2} />
-                        <label className="form-check-label" htmlFor="q8a1">
-                            Career building
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q8" id="q8a2" value={3} />
-                        <label className="form-check-label" htmlFor="q8a2">
-                            Job market transition
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q8" id="q8a3" value={4} />
-                        <label className="form-check-label" htmlFor="q8a3">
-                            Starting a family
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">9</span>What experience do you have in the field of investments?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q9" id="q9a1" value={1} />
-                        <label className="form-check-label" htmlFor="q9a1">
-                            Beginner
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q9" id="q9a2" value={3} />
-                        <label className="form-check-label" htmlFor="q9a2">
-                            Experienced
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">10</span>If you have had previous investments, what types were they, and what results did you achieve with them?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q10" id="q10a1" value={2} />
-                        <label className="form-check-label" htmlFor="q10a1">
-                            Conservative, low returns
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q10" id="q10a2" value={3} />
-                        <label className="form-check-label" htmlFor="q10a2">
-                            Balanced, moderate returns
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q10" id="q10a3" value={5} />
-                        <label className="form-check-label" htmlFor="q10a3">
-                            Riskier, high returns
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">11</span>How aware are you of the current market environment and economic trends?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q11" id="q11a1" value={1} />
-                        <label className="form-check-label" htmlFor="q11a1">
-                            Not aware
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q11" id="q11a2" value={3} />
-                        <label className="form-check-label" htmlFor="q11a2">
-                            Partially aware
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q11" id="q11a3" value={4} />
-                        <label className="form-check-label" htmlFor="q11a3">
-                            Well-informed
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q11" id="q11a4" value={5} />
-                        <label className="form-check-label" htmlFor="q11a4">
-                            Very well-informed
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
-                    <hr className="my-5" />
-
-                    <h2><span className="question-number">12</span>What factors influence your financial decisions in the current market situation?</h2>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q12" id="q12a1" value={2} />
-                        <label className="form-check-label" htmlFor="q12a1">
-                            Financial trends
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q12" id="q12a2" value={3} />
-                        <label className="form-check-label" htmlFor="q12a2">
-                            Investment opportunities
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q12" id="q12a3" value={4} />
-                        <label className="form-check-label" htmlFor="q12a3">
-                            Economic stability
-                        </label>
-                    </div>
-                    <div className="form-check">
-                        <input className="form-check-input" type="radio" name="q12" id="q12a4" value={5} />
-                        <label className="form-check-label" htmlFor="q12a4">
-                            Inflation and interest rates
-                        </label>
-                        <div className="invalid-feedback">You have to select an option</div>
-                    </div>
-
+                            {question.validationStatus && <div>You have to select an option</div>}
+                            <hr className="my-5" />
+                        </div>
+                    </>
+                ))}
                     <div className="row d-flex align-items-center my-5">
                         <div className="col-6">
                             <button className="btn btn-outline-primary" onClick={() => window.location = '/registration1'}>Previous</button>
