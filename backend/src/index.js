@@ -2,7 +2,7 @@ import express from "express";
 import userRouter from "./routes/user_router.js";
 import sequelizeDb from "./database/db.js";
 
-await sequelizeDb.sync({ force: true });
+await sequelizeDb.sync();
 
 const app = express();
 const port = 4000;
