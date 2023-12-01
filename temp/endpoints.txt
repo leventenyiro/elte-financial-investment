@@ -42,7 +42,7 @@ GET /investment/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
     ...
 GET /investment/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
     ...
-GET /investment/:date HETI AJANLAT LEKERESE DATUM ALAPJAN (FORMATUM:  { date: "2020-06-19" })
+GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
 
 ----------------------------------------------------------------------------------
 MATERIAL / OKTATASI ANYAGOK
