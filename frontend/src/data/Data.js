@@ -1,5 +1,6 @@
 class Data { 
-    static url = 'http://localhost:4000';
+
+    static url = "http://localhost:4000"
 
     static async fetchTest() {
         const response = await fetch("http://test.com/");
@@ -7,7 +8,7 @@ class Data {
     }
 
     static async userRegistration(firstname, lastname, email, password, surveyAnswers) {
-        const url = `${url}/registration`;
+        const url = `${Data.url}/registration`;
 
         const requestData = {
             firstname,
