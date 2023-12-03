@@ -211,7 +211,7 @@ function Registration2() {
 
 
             // handle success
-            // localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
+            localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
         } catch (error) {
             console.error("Error during registration:", error.message);
         }
