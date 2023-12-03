@@ -36,6 +36,19 @@ class Data {
             console.error("Error during user registration:", error.message);
         }
     }
+
+    static fetchNews() {
+        return [
+            {
+                id: '55367262-7306-4f57-9163-1e97c9acb2ab',
+                title: 'Tech Stocks Propel NASDAQ to Record Highs',
+                description:
+                    'In a surprising turn of events, major tech stocks experienced a sudden surge, driving the NASDAQ to a record high. Analysts attribute this unexpected boost to positive quarterly earnings reports and growing investor confidence in the sector.',
+                imageUrl:
+                    'https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg',
+            },
+        ];
+    }
 }
 
 export default Data;
