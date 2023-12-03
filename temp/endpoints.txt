@@ -1,0 +1,58 @@
+---------------------------------------------------------------------------------
+USER
+---------------------------------------------------------------------------------
+POST  /user/registration REGISZTRACIO                           OK
+    - ha okes: 200
+    - ha hianyos/nem megfelelo a kuldott json: 422
+    - ha nem hianyos, de nem jo(k) az adat(ok): 500
+POST  /user/login BEJELENTKEZES                                 OK
+    - ha okes: 200 + TOKEN
+    - ha hianyos/nem megfelelo a kuldott json: 422
+    - ha nem hianyos, de nincs ilyen felhasznalo/email: 401
+GET   /user/me SAJAT ADATOK LEKERESE (tokkennel)                OK
+    - ha okes: 200 + adatok (pw nelkul)
+    - ha nincs token: 401
+    - ha nem jo a token: 500
+PATCH /user/me SAJAT ADATOK UPDATELESE (token+adatok)           OK
+    - ha okes: 200
+    - ha hianyos/nem megfelelo: 422
+    - ha magaval az adatokkal van valami problema: 500
+    - ha nem jo a token/nincs token: 500
+
+GET user/logout                                                 OK
+    - ha okes: 200
+    - ha nincs ilyen tokkennel user: 401
+    - ha nem jo a token/nincs token: 500
+
+---------------------------------------------------------------------------------
+NEWS
+---------------------------------------------------------------------------------
+
+GET /news/:topic HIREK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
+    - ha okes: 200 + HIREK
+    - ha hianyos: 422
+    - ha nem jo az adat: 500
+
+----------------------------------------------------------------------------------
+INVESTMENT
+----------------------------------------------------------------------------------
+
+GET /investment/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
+    ...
+GET /investment/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
+    ...
+GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
+
+----------------------------------------------------------------------------------
+MATERIAL / OKTATASI ANYAGOK
+----------------------------------------------------------------------------------
+
+GET /material/ OSSZES OKTATASI ANYAG LEKERESE
+    ...
+
+GET /quiz/:matId KVIZEK LEKERESEK OKTATASI ANYAG ID-JE ALAPJAN
+    ...
+
+----------------------------------------------------------------------------------
+NOTIFICATION
+----------------------------------------------------------------------------------
