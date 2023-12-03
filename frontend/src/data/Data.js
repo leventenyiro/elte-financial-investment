@@ -38,6 +38,8 @@ class Data {
     }
 
     static fetchNews() {
+        // TODO: fetch here
+
         return [
             {
                 id: '55367262-7306-4f57-9163-1e97c9acb2ab',
