@@ -23,7 +23,6 @@ GET user/logout                                                 OK
     - ha okes: 200
     - ha nincs ilyen tokkennel user: 401
     - ha nem jo a token/nincs token: 500
-GET /user/notification ????
 
 ---------------------------------------------------------------------------------
 NEWS
@@ -54,3 +53,6 @@ GET /material/ OSSZES OKTATASI ANYAG LEKERESE
 GET /quiz/:matId KVIZEK LEKERESEK OKTATASI ANYAG ID-JE ALAPJAN
     ...
 
+----------------------------------------------------------------------------------
+NOTIFICATION
+----------------------------------------------------------------------------------
