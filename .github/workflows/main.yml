@@ -23,30 +23,30 @@ jobs:
      - run: npm run build --if-present
        working-directory: backend
 
-  # backend-deploy:
-  #   if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-  #   needs: backend-check
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: Use Node.js 18.x
-  #     uses: actions/setup-node@v3
-  #     with:
-  #       node-version: '18.x'
-  #       cache: 'npm'
-  #       cache-dependency-path: backend/package-lock.json
-  #   - name: Install dependencies
-  #     run: npm install
-  #     working-directory: backend
-  #   - name: Build application
-  #     run: npm run build -- --prod
-  #     working-directory: backend
-  #   - name: Deploy to Azure Web App
-  #     uses: azure/webapps-deploy@v2
-  #     with:
-  #       app-name: 'elte-financial-investment-api'
-  #       publish-profile: ${{ secrets.PUBLISH_PROFILE_API }}
-  #       package: './backend/dist/backend'
+  backend-deploy:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: backend-check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+        cache-dependency-path: backend/package-lock.json
+    - name: Install dependencies
+      run: npm install
+      working-directory: backend
+    - name: Build application
+      run: npm run build -- --prod
+      working-directory: backend
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'elte-financial-investment-api'
+        publish-profile: ${{ secrets.PUBLISH_PROFILE_API }}
+        package: './backend/dist/backend'
 
   frontend-check:
      runs-on: ubuntu-latest
@@ -63,26 +63,27 @@ jobs:
      - run: CI=false npm run build --if-present
        working-directory: frontend
 
-  # frontend-deploy:
-  #   if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-  #   needs: frontend-check
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #   - name: Checkout repository
-  #     uses: actions/checkout@v2
-  #   - name: Setup Node.js
-  #     uses: actions/setup-node@v2
-  #     with:
-  #       node-version: '18.x'
-  #   - name: Install dependencies
-  #     run: npm install
-  #     working-directory: frontend
-  #   - name: Build application
-  #     run: npm run build -- --prod
-  #     working-directory: frontend
-  #   - name: Deploy to Azure Web App
-  #     uses: azure/webapps-deploy@v2
-  #     with:
-  #       app-name: 'elte-financial-investment-web'
-  #       publish-profile: ${{ secrets.PUBLISH_PROFILE_WEB }}
-  #       package: './frontend/dist/frontend'
+  frontend-deploy:
+    if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+    needs: frontend-check
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v3
+      with:
+        node-version: 18.x
+        cache: 'npm'
+        cache-dependency-path: frontend/package-lock.json
+    - name: Install dependencies
+      run: npm install
+      working-directory: frontend
+    - name: Build application
+      run: npm run build -- --prod
+      working-directory: frontend
+    - name: Deploy to Azure Web App
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'elte-financial-investment-web'
+        publish-profile: ${{ secrets.PUBLISH_PROFILE_WEB }}
+        package: './frontend/dist/frontend'
