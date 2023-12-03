@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
 function Registration1() {
-    const [firstname, setFirstname] = useState('');
-    const [lastname, setLastname] = useState('');
+    const [firstName, setFirstname] = useState('');
+    const [lastName, setLastname] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
@@ -15,8 +15,8 @@ function Registration1() {
             console.log(JSON.stringify(data))
 
             // set the saved values
-            setFirstname(data.firstname);
-            setLastname(data.lastname);
+            setFirstname(data.firstName);
+            setLastname(data.lastName);
             setEmail(data.email);
             setPassword(data.password);
             setPasswordAgain(data.passwordAgain);
@@ -30,12 +30,12 @@ function Registration1() {
             element.classList.remove('is-invalid');
         });
 
-        if (firstname === '') {
+        if (firstName === '') {
             document.querySelector('#inputFirstname').classList.add('is-invalid');
             return;
         }
 
-        if (lastname === '') {
+        if (lastName === '') {
             document.querySelector('#inputLastname').classList.add('is-invalid');
             return;
         }
@@ -56,8 +56,8 @@ function Registration1() {
         }
     
         localStorage.setItem("reg-form-step-1", JSON.stringify({
-            firstname: firstname,
-            lastname: lastname,
+            firstname: firstName,
+            lastname: lastName,
             email: email,
             password: password,
             passwordAgain: passwordAgain
@@ -74,13 +74,13 @@ function Registration1() {
                     <div className="row">
                         <div className="col-lg-6 mb-4">
                             <label htmlFor="inputFirstname" className="form-label">Firstname</label>
-                            <input type="text" className="form-control" id="inputFirstname" name="firstname" value={firstname} onChange={e => setFirstname(e.target.value)} />
+                            <input type="text" className="form-control" id="inputFirstname" name="firstname" value={firstName} onChange={e => setFirstname(e.target.value)} />
                             <div className="invalid-feedback">Firstname is required</div>
                         </div>
 
                         <div className="col-lg-6 mb-4">
                             <label htmlFor="inputLastname" className="form-label">Lastname</label>
-                            <input type="text" className="form-control" id="inputLastname" name="lastname" value={lastname} onChange={e => setLastname(e.target.value)} />
+                            <input type="text" className="form-control" id="inputLastname" name="lastname" value={lastName} onChange={e => setLastname(e.target.value)} />
                             <div className="invalid-feedback">Lastname is required</div>
                         </div>
                     </div>

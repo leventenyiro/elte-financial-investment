@@ -10,9 +10,9 @@ function Registration2() {
             id: "q1",
             label: "For how long do you plan to invest or save financially?",
             options: [
-                { value: "Short-term goals" },
-                { value: "Medium-term goals" },
-                { value: "Long-term goals" },
+                { value: "Short-term goals", points: 1 },
+                { value: "Medium-term goals", points: 3 },
+                { value: "Long-term goals", points: 5 },
             ],
             validationStatus: false,
         },
@@ -21,10 +21,10 @@ function Registration2() {
             id: "q2",
             label: "What financial goals do you want to focus on?",
             options: [
-                { value: "Travel" },
-                { value: "Home purchase" },
-                { value: "Retirement" },
-                { value: "Emergency fund" },
+                { value: "Travel", points: 1 },
+                { value: "Home purchase", points: 2 },
+                { value: "Retirement", points: 3 },
+                { value: "Emergency fund", points: 4 },
             ],
             validationStatus: false,
         },
@@ -33,9 +33,9 @@ function Registration2() {
             id: "q3",
             label: "How willing are you to take risks in your investments?",
             options: [
-                { value: "Low risk" },
-                { value: "Medium risk" },
-                { value: "High risk" },
+                { value: "Low risk", points: 1 },
+                { value: "Medium risk", points: 3 },
+                { value: "High risk", points: 5 },
             ],
             validationStatus: false,
         },
@@ -44,10 +44,10 @@ function Registration2() {
             id: "q4",
             label: "How important is stability and security in your financial decisions?",
             options: [
-                { value: "Not important" },
-                { value: "Less important" },
-                { value: "Important" },
-                { value: "Very important" },
+                { value: "Not important", points: 1 },
+                { value: "Less important", points: 2 },
+                { value: "Important", points: 3 },
+                { value: "Very important", points: 5 },
             ],
             validationStatus: false,
         },
@@ -56,9 +56,9 @@ function Registration2() {
             id: "q5",
             label: "What is your current income situation?",
             options: [
-                { value: "Variable" },
-                { value: "Stable" },
-                { value: "Growing" },
+                { value: "Variable", points: 2 },
+                { value: "Stable", points: 3 },
+                { value: "Growing", points: 4 },
             ],
             validationStatus: false,
         },
@@ -67,9 +67,9 @@ function Registration2() {
             id: "q6",
             label: "From which sources does your income come?",
             options: [
-                { value: "Salary" },
-                { value: "Investment returns" },
-                { value: "Passive income sources" },
+                { value: "Salary", points: 3 },
+                { value: "Investment returns", points: 4 },
+                { value: "Passive income sources", points: 5 },
             ],
             validationStatus: false,
         },
@@ -78,10 +78,10 @@ function Registration2() {
             id: "q7",
             label: "Which life stage are you currently in?",
             options: [
-                { value: "Student" },
-                { value: "Recent graduate" },
-                { value: "Middle-aged" },
-                { value: "Approaching retirement" },
+                { value: "Student", points: 1 },
+                { value: "Recent graduate", points: 2 },
+                { value: "Middle-aged", points: 3 },
+                { value: "Approaching retirement", points: 4 },
             ],
             validationStatus: false,
         },
@@ -90,9 +90,9 @@ function Registration2() {
             id: "q8",
             label: "What important life events are you preparing for in the near future?",
             options: [
-                { value: "Career building" },
-                { value: "Job market transition" },
-                { value: "Starting a family" },
+                { value: "Career building" , points: 2 },
+                { value: "Job market transition", points: 3 },
+                { value: "Starting a family", points: 4 },
             ],
             validationStatus: false,
         },
@@ -101,9 +101,8 @@ function Registration2() {
             id: "q9",
             label: "What experience do you have in the field of investments?",
             options: [
-                { value: "Beginner" },
-                { value: "Experienced" },
-                { value: "Long-term goals" },
+                { value: "Beginner", points: 1 },
+                { value: "Experienced", points: 3},
             ],
             validationStatus: false,
         },
@@ -112,9 +111,9 @@ function Registration2() {
             id: "q10",
             label: "If you have had previous investments, what types were they, and what results did you achieve with them?",
             options: [
-                { value: "Conservative, low returns" },
-                { value: "Balanced, moderate returns" },
-                { value: "Riskier, high returns" },
+                { value: "Conservative, low returns", points: 2 },
+                { value: "Balanced, moderate returns", points: 3 },
+                { value: "Riskier, high returns", points: 5 },
             ],
             validationStatus: false,
         },
@@ -123,10 +122,10 @@ function Registration2() {
             id: "q11",
             label: "How aware are you of the current market environment and economic trends?",
             options: [
-                { value: "Not aware" },
-                { value: "Partially aware" },
-                { value: "Well-informed" },
-                { value: "Very well-informed" },
+                { value: "Not aware", points: 1 },
+                { value: "Partially aware", points: 3 },
+                { value: "Well-informed", points: 4 },
+                { value: "Very well-informed", points: 5 },
             ],
             validationStatus: false,
         },
@@ -135,10 +134,10 @@ function Registration2() {
             id: "q12",
             label: "What factors influence your financial decisions in the current market situation?",
             options: [
-                { value: "Financial trends" },
-                { value: "Investment opportunities" },
-                { value: "Economic stability" },
-                { value: "Inflation and interest rates" },
+                { value: "Financial trends", points: 2 },
+                { value: "Investment opportunities", points: 3 },
+                { value: "Economic stability", points: 4 },
+                { value: "Inflation and interest rates", points: 5 },
             ],
             validationStatus: false,
         },
@@ -177,26 +176,44 @@ function Registration2() {
         e.preventDefault();
 
         // create error messages if a radio button section is not filled
-        questionData.forEach((question) => {
+        questionData.forEach((question, index) => {
             handleValidation(question.id); // validate each question on submit
             const selectedOption = document.querySelector(`input[name=${question.id}]:checked`);
         
             if (selectedOption) {
-                const label = document.querySelector(`label[for=${selectedOption.id}]`);
-                setSurveyAnswers((prevAnswers) => ({ ...prevAnswers, [`answer${question.id}`]: label.textContent }));
+                const selectedValue = selectedOption.value;
+                const selectedOptionData = question.options.find(option => option.value === selectedValue);
+        
+                if (selectedOptionData) {
+
+                    const points = selectedOptionData.points;
+                    setSurveyAnswers((prevAnswers) => ({
+                        ...prevAnswers,
+                        [`answer${index}`]: points,
+                    }));
+                }
             }
         });
+        
 
         // check if all questions already filled
-
-        console.log(JSON.stringify(questionData, null, 2))
-
         const invalidQuestions = questionData.find((question) => question.validationStatus === true);
         if(invalidQuestions) return console.error("I found unanswered questions")
 
         try {
             const firstStepData = JSON.parse(localStorage.getItem('reg-form-step-1'));
-            await Data.userRegistration(firstStepData.username, firstStepData.email, firstStepData.password, firstStepData.phoneNumber, surveyAnswers); // trigger registration function
+
+            console.log("First step data: " + JSON.stringify(firstStepData, null, 2))
+
+            await Data.userRegistration(
+                firstStepData.firstName, 
+                firstStepData.lastName,  
+                firstStepData.email, 
+                firstStepData.password, 
+                firstStepData.phoneNumber, 
+                surveyAnswers
+            ); // trigger registration function
+
 
             // handle success
             localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
@@ -213,9 +230,9 @@ function Registration2() {
                 <form onSubmit={handleRegistration}>
 
                 {questionData.map((question, index) => (
-                    <>
+                    <div key={index}>
                         <hr className="my-5" />
-                        <div key={question.id} className="form-group" onChange={() => handleValidation(question.id)}>
+                        <div className="form-group" onChange={() => handleValidation(question.id)}>
                             <h2>
                             <span className="question-number">{index + 1}</span>
                             {question.label}
@@ -238,7 +255,7 @@ function Registration2() {
                             {question.validationStatus && <div>You have to select an option</div>}
                             <hr className="my-5" />
                         </div>
-                    </>
+                    </div>
                 ))}
                     <div className="row d-flex align-items-center my-5">
                         <div className="col-6">
