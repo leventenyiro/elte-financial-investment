@@ -1,0 +1,37 @@
+.question-number {
+    font-size: 160px;
+    opacity: 25%;
+    position: absolute;
+    transform: translate(-180px, -35%);
+    user-select: none;
+    z-index: 0;
+
+    @media screen and (max-width: 991px) {
+        visibility: hidden;
+    }
+}
+
+hr {
+    opacity: 10%;
+}
+
+.Feed {
+    .news {
+        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+        border-radius: 8px;
+        overflow: hidden !important;
+        height: 500px;
+
+        img {
+            height: 200px;
+            width: 100%;
+            margin: 0 !important;
+            padding: 0 !important;
+            object-fit: cover;
+            display: block;
+        }
+
+        text-align: justify;
+    }
+
+}
