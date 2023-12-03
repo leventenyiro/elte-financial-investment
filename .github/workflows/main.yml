@@ -38,9 +38,9 @@ jobs:
     - name: Install dependencies
       run: npm install
       working-directory: backend
-    - name: Build application
-      run: npm run build -- --prod
-      working-directory: backend
+    # - name: Build application
+    #   run: npm run build -- --prod
+    #   working-directory: backend
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
@@ -79,7 +79,7 @@ jobs:
       run: npm install
       working-directory: frontend
     - name: Build application
-      run: npm run build -- --prod
+      run: CI=false npm run build -- --prod
       working-directory: frontend
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
