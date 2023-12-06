@@ -46,7 +46,7 @@ jobs:
       with:
         app-name: 'elte-financial-investment-api'
         publish-profile: ${{ secrets.PUBLISH_PROFILE_API }}
-        package: './'
+        package: './backend'
 
   frontend-check:
      runs-on: ubuntu-latest
