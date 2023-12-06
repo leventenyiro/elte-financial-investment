@@ -1,6 +1,6 @@
 import express from "express";
-import userRouter from "./routes/user_router.js";
-import sequelizeDb from "./database/db.js";
+import userRouter from "./src/routes/user_router.js";
+import sequelizeDb from "./src/database/db.js";
 import cors from "cors";
 await sequelizeDb.sync();
 
