@@ -37,7 +37,7 @@ jobs:
         cache-dependency-path: backend/package-lock.json
     - name: Install dependencies
       run: npm install
-      working-directory: backend/src
+      working-directory: backend
     # - name: Build application
     #   run: npm run build -- --prod
     #   working-directory: backend
@@ -46,7 +46,7 @@ jobs:
       with:
         app-name: 'elte-financial-investment-api'
         publish-profile: ${{ secrets.PUBLISH_PROFILE_API }}
-        package: './backend/src'
+        package: './'
 
   frontend-check:
      runs-on: ubuntu-latest
