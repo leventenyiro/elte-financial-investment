@@ -43,11 +43,11 @@ jobs:
     #   working-directory: backend
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
+      working-directory: backend/src
       with:
         app-name: 'elte-financial-investment-api'
         publish-profile: ${{ secrets.PUBLISH_PROFILE_API }}
         package: './backend'
-      working-directory: backend/src
 
   frontend-check:
      runs-on: ubuntu-latest
