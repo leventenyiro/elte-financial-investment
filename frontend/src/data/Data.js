@@ -7,16 +7,30 @@ class Data {
         return response;
     }
 
-    static async userRegistration(firstname, lastname, email, password, surveyAnswers) {
-        const url = `${Data.url}/registration`;
+    /*
+
+    await Data.userRegistration(
+    firstStepData.firstName, 
+    firstStepData.lastName,  
+    firstStepData.email, 
+    firstStepData.password, 
+    firstStepData.phoneNumber, 
+    surveyAnswers   
+    ); // trigger registration function
+
+            */
+    static async userRegistration(firstName, lastName, email, password, surveyAnswers) {
+        const url = `${Data.url}/user/registration`;
 
         const requestData = {
-            firstname,
-            lastname,
-            email,
-            password,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
             survey: surveyAnswers,
         };
+
+        console.log(JSON.stringify(requestData, null, 2))
 
         try {
             const response = await fetch(url, {

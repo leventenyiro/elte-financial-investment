@@ -143,7 +143,7 @@ function Registration2() {
         },
     ]);
 
-    const [surveyAnswers, setSurveyAnswers] = useState({}); // store the selected answers
+    let surveyAnswers = {}; // store survey answers
     
     useEffect(() => {
         if (localStorage.getItem('reg-form-step-1') === null) {
@@ -185,12 +185,10 @@ function Registration2() {
                 const selectedOptionData = question.options.find(option => option.value === selectedValue);
         
                 if (selectedOptionData) {
-
                     const points = selectedOptionData.points;
-                    setSurveyAnswers((prevAnswers) => ({
-                        ...prevAnswers,
-                        [`answer${index}`]: points,
-                    }));
+                    const answerKey = `answer${index + 1}`;
+        
+                    surveyAnswers[answerKey] = points;
                 }
             }
         });
@@ -203,14 +201,11 @@ function Registration2() {
         try {
             const firstStepData = JSON.parse(localStorage.getItem('reg-form-step-1'));
 
-            console.log("First step data: " + JSON.stringify(firstStepData, null, 2))
-
             await Data.userRegistration(
-                firstStepData.firstName, 
-                firstStepData.lastName,  
+                firstStepData.firstname, 
+                firstStepData.lastname,  
                 firstStepData.email, 
                 firstStepData.password, 
-                firstStepData.phoneNumber, 
                 surveyAnswers
             ); // trigger registration function
 
