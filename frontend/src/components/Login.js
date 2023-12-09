@@ -1,22 +1,33 @@
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
+import Data from "../data/Data";
 
 function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const { setIsLoggedIn } = useAuth();
 
     const handleLogin = async (e) => {
-        e.preventDefault();
-        // const res = await Data.login(username, password);
 
-        // if (!res) {
-        //     // error
-        // } else {
-        setUsername('');
-        //     setIsLoggedIn(true);
-        //     setShowModal(false);
-        // }
+        /*
+            "email": "test@example.com",
+            "password": "asdasd",
+        */
+        e.preventDefault();
+        const res = await Data.userLogin(email, password);
+        if (!res) {
+            console.error('Response not found!')
+        } else {
+            setIsLoggedIn(true);
+            document.cookie = "authCookie" + "=" + res; // set cookie
+            navigate('/feed');
+        }
+        setEmail('');
         setPassword('');
-    }
+    } 
 
     return (
         <div className="container d-flex justify-content-center">
@@ -24,9 +35,9 @@ function Login() {
                 <h1>Login</h1>
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
-                        <label htmlFor="inputUsername" className="form-label">Username</label>
-                        <input required type="text" className="form-control" id="inputUsername" name="username" value={username} onChange={e => setUsername(e.target.value)} />
-                        <div className="invalid-feedback">Username is required</div>
+                        <label htmlFor="inputEmail" className="form-label">Email</label>
+                        <input required type="email" className="form-control" id="inputEmail" name="email" value={email} onChange={e => setEmail(e.target.value)} />
+                        <div className="invalid-feedback">Email is required</div>
                     </div>
 
                     <div className="mb-3">

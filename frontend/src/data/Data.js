@@ -19,6 +19,41 @@ class Data {
     ); // trigger registration function
 
             */
+
+    static async userLogin(email, password) {
+        const url = `${Data.url}/user/login`;
+
+        const requestData = {
+            email: email,
+            password: password,
+        };
+
+        console.log(JSON.stringify(requestData, null, 2))
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log("Login successful! Response: " + JSON.stringify(responseData, null, 2));
+
+            return responseData?.token;
+
+        } catch (error) {
+            console.error("Error during user login:", error.message);
+        }
+
+        };
+
     static async userRegistration(firstName, lastName, email, password, surveyAnswers) {
         const url = `${Data.url}/user/registration`;
 
