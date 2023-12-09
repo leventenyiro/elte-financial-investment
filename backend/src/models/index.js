@@ -6,6 +6,7 @@ import Quiz from "./quiz.js";
 import Answer from "./answer.js";
 import Question from "./question.js";
 import Token from "./token.js";
+import News from "./news.js";
 
 User.hasOne(Survey, { foreignKey: "userId" });
 Survey.belongsTo(User, { foreignKey: "userId" });
@@ -25,4 +26,14 @@ Question.belongsTo(Quiz, { foreignKey: "quizId" });
 Question.hasMany(Answer, { foreignKey: "questId" });
 Answer.belongsTo(Question, { foreignKey: "questId" });
 
-export { User, Survey, Transaction, Token, Material, Quiz, Question, Answer };
+export {
+  User,
+  Survey,
+  Transaction,
+  Token,
+  Material,
+  Quiz,
+  Question,
+  Answer,
+  News,
+};

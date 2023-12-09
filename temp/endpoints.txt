@@ -3,10 +3,12 @@ HIBAUZENETEK
 ---------------------------------------------------------------------------------
 Rossz/hianyos JSON:                     422
 Belso, adatbazis hiba:                  500
-Nincs ilyen felhasznalo/material:       404
+Nincs ilyen felhasznalo/material/:      404
 Ha nincs token:                         500
-Ha nincs ilyen id/topic/skill:          404
+Ha nincs ilyen id/topic:                404
 Ha rossz a pw:                          401
+Ha nincsen hir/material
+    az adatbazisban (empty json)        200
 
 HA MINDEN OKES:                         200
 
@@ -34,9 +36,13 @@ GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
 MATERIAL / OKTATASI ANYAGOK / KVIZ
 ----------------------------------------------------------------------------------
 
-GET /material/                                                      OK
+GET /material                                                       OK
 GET /material/topic/:topic ["basics", "crypto", "fund", "stock"]    OK
 GET /material/id/:id                                                OK
 GET /material/id/:id/quiz                                           OK
 
+----------------------------------------------------------------------------------
+NEWS :: topic ["crypto", "fund", "stock", "other"]
+----------------------------------------------------------------------------------
 
+GET /news       {Mindent visszaad}          OK
