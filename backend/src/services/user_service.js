@@ -14,9 +14,9 @@ class UserService {
       survey.answer11 +
       survey.answer12;
 
-    if (points <= 20) return "low";
-    else if (points <= 40) return "medium";
-    else return "high";
+    if (points <= 20) return ["low", true, false, false];
+    else if (points <= 40) return ["medium", true, true, false];
+    else return ["high", true, true, true];
   }
 }
 

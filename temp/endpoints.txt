@@ -1,28 +1,24 @@
 ---------------------------------------------------------------------------------
+HIBAUZENETEK
+---------------------------------------------------------------------------------
+Rossz/hianyos JSON:                 422
+Belso, adatbazis hiba:              500
+Nincs ilyen felhasznalo:            401
+Ha nincs token:                     500
+Ha nincs ilyen id/topic/skill:      401
+
+HA MINDEN OKES:                     200
+
+
+---------------------------------------------------------------------------------
 USER
 ---------------------------------------------------------------------------------
-POST  /user/registration REGISZTRACIO                           OK
-    - ha okes: 200
-    - ha hianyos/nem megfelelo a kuldott json: 422
-    - ha nem hianyos, de nem jo(k) az adat(ok): 500
-POST  /user/login BEJELENTKEZES                                 OK
-    - ha okes: 200 + TOKEN
-    - ha hianyos/nem megfelelo a kuldott json: 422
-    - ha nem hianyos, de nincs ilyen felhasznalo/email: 401
-GET   /user/me SAJAT ADATOK LEKERESE (tokkennel)                OK
-    - ha okes: 200 + adatok (pw nelkul)
-    - ha nincs token: 401
-    - ha nem jo a token: 500
-PATCH /user/me SAJAT ADATOK UPDATELESE (token+adatok)           OK
-    - ha okes: 200
-    - ha hianyos/nem megfelelo: 422
-    - ha magaval az adatokkal van valami problema: 500
-    - ha nem jo a token/nincs token: 500
+POST    /user/registration                            OK
+POST    /user/login                                   OK
+GET     /user/me                                      OK
+PATCH   /user/me                                      OK
+GET     /user/logout                                  OK
 
-GET user/logout                                                 OK
-    - ha okes: 200
-    - ha nincs ilyen tokkennel user: 401
-    - ha nem jo a token/nincs token: 500
 
 ---------------------------------------------------------------------------------
 NEWS
@@ -47,12 +43,14 @@ GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
 MATERIAL / OKTATASI ANYAGOK
 ----------------------------------------------------------------------------------
 
-GET /material/ OSSZES OKTATASI ANYAG LEKERESE
-    ...
+GET /material/
+GET /material/:topic
+GET /matriel/:skill
 
-GET /quiz/:matId KVIZEK LEKERESEK OKTATASI ANYAG ID-JE ALAPJAN
-    ...
+
 
 ----------------------------------------------------------------------------------
-NOTIFICATION
+QUIZ
 ----------------------------------------------------------------------------------
+
+

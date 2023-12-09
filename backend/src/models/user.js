@@ -13,7 +13,8 @@ User.init(
       unique: true,
     },
     role: {
-      type: DataTypes.ENUM("user", "admin"),
+      type: DataTypes.ENUM,
+      values: ["user", "admin"],
       allowNull: false,
     },
     firstName: {
@@ -34,7 +35,20 @@ User.init(
       allowNull: false,
     },
     risk: {
-      type: DataTypes.ENUM("low", "medium", "high"),
+      type: DataTypes.ENUM,
+      values: ["low", "medium", "high"],
+      allowNull: false,
+    },
+    fund: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    crypto: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },

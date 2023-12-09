@@ -50,7 +50,11 @@ class UserValidator {
       body("lastName")
         .notEmpty()
         .withMessage("The lastName value should not empty."),
+      body("risk").isIn("low", "medium", "high").withMessage("Wrong value!"),
       body("risk").notEmpty().withMessage("The risk value should not empty."),
+      body("fund").notEmpty().isBoolean(),
+      body("stock").notEmpty().isBoolean(),
+      body("crypto").notEmpty().isBoolean(),
     ];
   }
 }

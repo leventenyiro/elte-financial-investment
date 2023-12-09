@@ -17,7 +17,8 @@ Transaction.init(
       defaultValue: null,
     },
     type: {
-      type: DataTypes.ENUM("standard", "premium"),
+      type: DataTypes.ENUM,
+      values: ["standard", "premium"],
       allowNull: false,
     },
     duration: {

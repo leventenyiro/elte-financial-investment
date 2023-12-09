@@ -16,7 +16,10 @@ class UserController {
         email: req.body.email,
         role: "user",
         password: hash,
-        risk: risk,
+        risk: risk[0],
+        fund: risk[1],
+        stock: risk[2],
+        crypto: risk[3],
       });
       const survey = await Survey.create({
         ...req.body.survey,
@@ -73,7 +76,15 @@ class UserController {
       where: {
         id: req.userId,
       },
-      attributes: ["firstName", "lastName", "email", "risk"],
+      attributes: [
+        "firstName",
+        "lastName",
+        "email",
+        "risk",
+        "fund",
+        "stock",
+        "crypto",
+      ],
     });
     if (user.length > 0) {
       return res.status(200).json(user[0]);
@@ -96,6 +107,9 @@ class UserController {
           lastName: req.body.lastName,
           risk: req.body.risk,
           email: req.body.email,
+          fund: req.body.fund,
+          stock: req.body.stock,
+          crypto: req.body.crypto,
         });
         return res.status(200).json({ msg: "Successfully!" });
       } catch (e) {
