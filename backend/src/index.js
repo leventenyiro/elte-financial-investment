@@ -4,6 +4,8 @@ import sequelizeDb from "./database/db.js";
 import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
+import materialRouter from "./routes/material_router.js";
+
 await sequelizeDb.sync();
 
 const app = express();
@@ -27,6 +29,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/user", userRouter);
+app.use("/material", materialRouter);
 
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);

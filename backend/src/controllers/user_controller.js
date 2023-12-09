@@ -65,7 +65,7 @@ class UserController {
         });
       }
     } else {
-      return res.status(401).json({
+      return res.status(404).json({
         msg: "User not found!",
       });
     }
@@ -89,7 +89,7 @@ class UserController {
     if (user.length > 0) {
       return res.status(200).json(user[0]);
     } else {
-      return res.status(401).json({
+      return res.status(404).json({
         msg: "User not found!",
       });
     }
@@ -118,7 +118,7 @@ class UserController {
         });
       }
     } else {
-      return res.status(401).json({
+      return res.status(404).json({
         msg: "User not found!",
       });
     }

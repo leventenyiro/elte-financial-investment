@@ -1,13 +1,14 @@
 ---------------------------------------------------------------------------------
 HIBAUZENETEK
 ---------------------------------------------------------------------------------
-Rossz/hianyos JSON:                 422
-Belso, adatbazis hiba:              500
-Nincs ilyen felhasznalo:            401
-Ha nincs token:                     500
-Ha nincs ilyen id/topic/skill:      401
+Rossz/hianyos JSON:                     422
+Belso, adatbazis hiba:                  500
+Nincs ilyen felhasznalo/material:       404
+Ha nincs token:                         500
+Ha nincs ilyen id/topic/skill:          404
+Ha rossz a pw:                          401
 
-HA MINDEN OKES:                     200
+HA MINDEN OKES:                         200
 
 
 ---------------------------------------------------------------------------------
@@ -18,16 +19,6 @@ POST    /user/login                                   OK
 GET     /user/me                                      OK
 PATCH   /user/me                                      OK
 GET     /user/logout                                  OK
-
-
----------------------------------------------------------------------------------
-NEWS
----------------------------------------------------------------------------------
-
-GET /news/:topic HIREK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
-    - ha okes: 200 + HIREK
-    - ha hianyos: 422
-    - ha nem jo az adat: 500
 
 ----------------------------------------------------------------------------------
 INVESTMENT
@@ -40,17 +31,12 @@ GET /investment/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
 GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
 
 ----------------------------------------------------------------------------------
-MATERIAL / OKTATASI ANYAGOK
+MATERIAL / OKTATASI ANYAGOK / KVIZ
 ----------------------------------------------------------------------------------
 
-GET /material/
-GET /material/:topic
-GET /matriel/:skill
-
-
-
-----------------------------------------------------------------------------------
-QUIZ
-----------------------------------------------------------------------------------
+GET /material/                                                      OK
+GET /material/topic/:topic ["basics", "crypto", "fund", "stock"]    OK
+GET /material/id/:id                                                OK
+GET /material/id/:id/quiz                                           OK
 
 

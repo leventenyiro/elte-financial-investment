@@ -1,9 +1,9 @@
 import { DataTypes, Model } from "sequelize";
 import sequelizeDb from "../database/db.js";
 
-class Material extends Model {}
+class Answer extends Model {}
 
-Material.init(
+Answer.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,27 +11,19 @@ Material.init(
       autoIncrement: true,
       allowNull: false,
     },
-    title: {
+    answer: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    content: {
-      type: DataTypes.TEXT,
+    isCorrect: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
-    },
-    abstract: {
-      type: DataTypes.TEXT,
-      allowNull: false,
-    },
-    topic: {
-      type: DataTypes.ENUM,
-      values: ["crypto", "stock", "fund", "basics"],
     },
   },
   {
     sequelize: sequelizeDb,
-    tableName: "materials",
+    tableName: "answers",
   }
 );
 
-export default Material;
+export default Answer;
