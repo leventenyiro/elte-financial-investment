@@ -6,11 +6,11 @@ import path from "path";
 import { fileURLToPath } from "url";
 import materialRouter from "./routes/material_router.js";
 import newsRouter from "./routes/news_router.js";
+import helmet from "helmet";
 
 await sequelizeDb.sync();
 
 const app = express();
-const port = 4000;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -20,8 +20,9 @@ var corsOptions = {
 };
 
 app.use(
-  express.json(),
+  helmet(),
   cors(corsOptions),
+  express.json(),
   express.static(path.join(__dirname, "public"))
 );
 
@@ -33,8 +34,8 @@ app.use("/user", userRouter);
 app.use("/material", materialRouter);
 app.use("/news", newsRouter);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server running at http://localhost:${process.env.PORT}`);
 });
 
 export default app;
