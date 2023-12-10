@@ -6,6 +6,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import materialRouter from "./routes/material_router.js";
 import newsRouter from "./routes/news_router.js";
+import investmentRouter from "./routes/investments_router.js";
 import helmet from "helmet";
 
 await sequelizeDb.sync();
@@ -33,6 +34,7 @@ app.get("/", (req, res) => {
 app.use("/user", userRouter);
 app.use("/material", materialRouter);
 app.use("/news", newsRouter);
+app.use("/investment", investmentRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);

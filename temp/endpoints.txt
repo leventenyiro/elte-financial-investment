@@ -26,9 +26,9 @@ GET     /user/logout                                  OK
 INVESTMENT
 ----------------------------------------------------------------------------------
 
-GET /investment/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
+GET /investment/risk/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
     ...
-GET /investment/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
+GET /investment/topic/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
     ...
 GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
 
