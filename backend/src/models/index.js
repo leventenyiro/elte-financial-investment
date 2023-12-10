@@ -7,6 +7,7 @@ import Answer from "./answer.js";
 import Question from "./question.js";
 import Token from "./token.js";
 import News from "./news.js";
+import Investment from "./investment.js";
 
 User.hasOne(Survey, { foreignKey: "userId" });
 Survey.belongsTo(User, { foreignKey: "userId" });
@@ -36,4 +37,5 @@ export {
   Question,
   Answer,
   News,
+  Investment
 };
