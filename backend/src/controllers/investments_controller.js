@@ -63,6 +63,23 @@ class InvestmentsController {
       return res.status(200).json(investments);
     }
   }
+
+  async getById(req, res) {
+    const id = req.params.id;
+    const investments = await Investment.findOne({
+      where: {
+        id: id,
+      },
+    });
+
+    if (investments.length === 0) {
+      return res
+        .status(404)
+        .json({ msg: "Investment not found with given ID!" });
+    } else {
+      return res.status(200).json(investments);
+    }
+  }
 }
 
 export default InvestmentsController;

@@ -16,6 +16,10 @@ class InvestmentValidator {
       body("endDate").notEmpty().withMessage("End date should not be empty"),
     ];
   }
+
+  checkId() {
+    return [param("id").notEmpty().isNumeric()];
+  }
 }
 
 export default InvestmentValidator;
