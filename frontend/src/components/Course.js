@@ -15,7 +15,7 @@ function Course() {
     }, []);
 
     useEffect(() => {
-        setCourseList(Data.fetchCourses());
+        // setCourseList(Data.fetchCourses());
     }, []);
 
     return (
