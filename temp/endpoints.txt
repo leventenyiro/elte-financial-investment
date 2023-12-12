@@ -26,11 +26,10 @@ GET     /user/logout                                  OK
 INVESTMENT
 ----------------------------------------------------------------------------------
 
-GET /investment/risk/:risk BEFEKTETESEK LEKERESE RIZIKO ALAPJAN (HIGH, MEDIUM, LOW)
-    ...
-GET /investment/topic/:topic BEFEKTESEK LEKERESE TEMAKOR ALAPJAN (FUND, CRYPTO, STOCK)
-    ...
-GET /investment/weekly HETI AJANLAT LEKERESE DATUM ALAPJAN
+GET /investment/risk/:risk (HIGH, MEDIUM, LOW)          OK
+GET /investment/topic/:topic (FUND, CRYPTO, STOCK)      OK
+GET /investment/id/:id                                  OK
+GET /investment/weekly                                  OK
 
 ----------------------------------------------------------------------------------
 MATERIAL / OKTATASI ANYAGOK / KVIZ
@@ -45,4 +44,5 @@ GET /material/id/:id/quiz                                           OK
 NEWS :: topic ["crypto", "fund", "stock", "other"]
 ----------------------------------------------------------------------------------
 
-GET /news       {Mindent visszaad}          OK
+GET /news           {Mindent visszaad}          OK
+GET /news/id/:id                                OK

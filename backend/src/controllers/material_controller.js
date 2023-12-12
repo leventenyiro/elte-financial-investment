@@ -1,4 +1,5 @@
 import { Material, Quiz, Question, Answer } from "../models/index.js";
+import TrackingService from "../services/tracking_service.js";
 
 class MaterialController {
   async all(req, res) {
@@ -23,7 +24,10 @@ class MaterialController {
       });
       if (!material) {
         return res.status(404).json({ message: "Not found." });
-      } else res.status(200).json(material);
+      } else {
+        TrackingService.add("Material", material.id, req.userId);
+        res.status(200).json(material);
+      }
     } catch (e) {
       return res.status(500).json({
         msg: e.message,
@@ -37,6 +41,7 @@ class MaterialController {
         where: {
           topic: topic,
         },
+        attributes: ["id", "title", "topic"],
       });
       if (material.length == 0) {
         return res.status(404).json({ message: "Material not found." });
@@ -80,6 +85,7 @@ class MaterialController {
         output.push(temp);
       }
       if (output.length > 0) {
+        TrackingService.add("Quiz", quiz.id, req.userId);
         return res.status(200).json({
           id: quiz.id,
           title: quiz.title,

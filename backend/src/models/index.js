@@ -8,6 +8,8 @@ import Question from "./question.js";
 import Token from "./token.js";
 import News from "./news.js";
 import Investment from "./investment.js";
+import Yield from "./yield.js";
+import Tracking from "./tracking.js";
 
 User.hasOne(Survey, { foreignKey: "userId" });
 Survey.belongsTo(User, { foreignKey: "userId" });
@@ -27,6 +29,12 @@ Question.belongsTo(Quiz, { foreignKey: "quizId" });
 Question.hasMany(Answer, { foreignKey: "questId" });
 Answer.belongsTo(Question, { foreignKey: "questId" });
 
+Investment.hasMany(Yield, { foreignKey: "investmentId" });
+Yield.belongsTo(Investment, { foreignKey: "investmentId" });
+
+User.hasMany(Tracking, { foreignKey: "userId" });
+Tracking.belongsTo(User, { foreignKey: "userId" });
+
 export {
   User,
   Survey,
@@ -37,5 +45,7 @@ export {
   Question,
   Answer,
   News,
-  Investment
+  Investment,
+  Yield,
+  Tracking,
 };

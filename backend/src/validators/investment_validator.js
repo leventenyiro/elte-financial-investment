@@ -5,16 +5,10 @@ class InvestmentValidator {
     return [param("topic").notEmpty().isIn(["stock", "fund", "crypto"])];
   }
   checkRisk() {
-    return [param("topic").notEmpty().isIn(["high", "medium", "low"])];
+    return [param("risk").notEmpty().isIn(["high", "medium", "low"])];
   }
-
-  checkDate() {
-    return [
-      body("startDate")
-        .notEmpty()
-        .withMessage("Start date should not be empty"),
-      body("endDate").notEmpty().withMessage("End date should not be empty"),
-    ];
+  checkId() {
+    return [param("id").notEmpty().isNumeric()];
   }
 }
 
