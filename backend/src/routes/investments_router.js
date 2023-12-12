@@ -22,19 +22,13 @@ investmentRouter.get(
   errorHandler,
   investmentController.getTopic
 );
+investmentRouter.get("/weekly", authGuard, investmentController.getWeekly);
 investmentRouter.get(
-  "/weekly",
-  authGuard,
-  investmentValidator.checkDate(),
-  errorHandler,
-  investmentController.getWeekly
-);
-investmentController.get(
   "/id/:id",
   authGuard,
   investmentValidator.checkId(),
   errorHandler,
-  investmentController.getById()
+  investmentController.getById
 );
 
 export default investmentRouter;

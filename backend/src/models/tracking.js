@@ -1,9 +1,9 @@
 import { DataTypes, Model, STRING } from "sequelize";
 import sequelizeDb from "../database/db.js";
 
-class Investment extends Model {}
+class Tracking extends Model {}
 
-Investment.init(
+Tracking.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,29 +11,24 @@ Investment.init(
       autoIncrement: true,
       allowNull: false,
     },
-    title: {
-      type: DataTypes.STRING,
+    userId: {
+      type: DataTypes.UUIDV4,
       allowNull: false,
     },
     content: {
-      type: DataTypes.TEXT,
+      type: DataTypes.ENUM,
+      values: ["Material", "Quiz", "Investment"],
       allowNull: false,
     },
-    risk: {
-      type: DataTypes.ENUM,
-      values: ["low", "medium", "high"],
-      allowNull: false,
-    },
-    topic: {
-      type: DataTypes.ENUM,
-      values: ["fund", "crypto", "stock"],
+    contentId: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
   {
     sequelize: sequelizeDb,
-    tableName: "investments",
+    tableName: "tracking",
   }
 );
 
-export default Investment;
+export default Tracking;

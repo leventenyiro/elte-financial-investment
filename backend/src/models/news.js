@@ -15,6 +15,10 @@ News.init(
       type: DataTypes.TEXT,
       allowNull: false,
     },
+    extract: {
+      type: DataTypes.STRING(300),
+      allowNull: false,
+    },
     content: {
       type: DataTypes.TEXT,
       allowNull: false,
