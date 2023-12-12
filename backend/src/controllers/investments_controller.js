@@ -12,28 +12,14 @@ class InvestmentsController {
         where: {
           risk: risk,
         },
+        attributes: ["id", "title", "topic", "risk"],
       });
       if (investments.length == 0) {
         return res
           .status(404)
           .json({ msg: "Investment not found with given risk!" });
       } else {
-        let output = new Array();
-        for (let i = 0; i < investments.length; ++i) {
-          const yields = await Yield.findAll({
-            where: {
-              investmentId: investments[i].id,
-            },
-            attributes: ["id", "year", "interestRate"],
-          });
-          const temp = {
-            investment: investments[i],
-            yields: yields,
-          };
-          TrackingService.add("Investment", investments[i].id, req.userId);
-          output.push(temp);
-        }
-        return res.status(200).json(output);
+        return res.status(200).json(investments);
       }
     } catch (e) {
       return res.status(500).json({
@@ -49,28 +35,14 @@ class InvestmentsController {
         where: {
           topic: topic,
         },
+        attributes: ["id", "title", "topic", "risk"],
       });
       if (investments.length == 0) {
         return res
           .status(404)
           .json({ msg: "Investment not found with given topic!" });
       } else {
-        let output = new Array();
-        for (let i = 0; i < investments.length; ++i) {
-          const yields = await Yield.findAll({
-            where: {
-              investmentId: investments[i].id,
-            },
-            attributes: ["id", "year", "interestRate"],
-          });
-          const temp = {
-            investment: investments[i],
-            yields: yields,
-          };
-          output.push(temp);
-          TrackingService.add("Investment", investments[i].id, req.userId);
-        }
-        return res.status(200).json(output);
+        return res.status(200).json(investments);
       }
     } catch (e) {
       return res.status(500).json({
@@ -93,7 +65,7 @@ class InvestmentsController {
             [Op.between]: [begin, end],
           },
         },
-        attributes: ["id", "title", "risk", "topic"],
+        attributes: ["id", "title", "topic", "risk"],
       });
       if (investments.length == 0) {
         return res
