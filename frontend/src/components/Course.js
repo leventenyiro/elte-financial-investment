@@ -29,8 +29,8 @@ function Course() {
         <div className="Course container">
             <h1>Your courses</h1>
             {courseList && Object.keys(courseList).map((topic) => (
-                <div key={topic.charAt(0).toUpperCase() + topic.slice(1)}>
-                    <h2>{topic}</h2>
+                <div key={topic}>
+                    <h2>{topic.charAt(0).toUpperCase() + topic.slice(1)}</h2>
                     <div className="row">
                         {courseList[topic].map((course, index) => (
                             <div key={course.id} className='col-md-4 pt-4'>
