@@ -10,6 +10,7 @@ import Registration2 from './components/Registration2';
 import NotFound from './components/NotFound';
 import { AuthProvider } from './contexts/AuthContext';
 import Feed from './components/Feed';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/registration1" element={<Registration1 />} />
             <Route path="/registration2" element={<Registration2 />} />
             <Route path='/feed' element={<Feed />} />
+            <Route path='/profile' element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
