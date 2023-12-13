@@ -21,8 +21,13 @@ function Header() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Home</a>
+                                <a className="nav-link" href={isLoggedIn ? '/feed' : '/'}>Home</a>
                             </li>
+                            {isLoggedIn && (
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/course">Course</a>
+                                </li>
+                            )}
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
