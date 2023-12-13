@@ -1,3 +1,4 @@
+import { getCookie } from "../utils/getCookie";
 class Data { 
 
     static url = "http://localhost:4000"
@@ -86,6 +87,66 @@ class Data {
             console.log("Registration successful! Response: " + JSON.stringify(responseData, null, 2));
         } catch (error) {
             console.error("Error during user registration:", error.message);
+        }
+    }
+
+    static async userData(token) {
+        const url = `${Data.url}/user/me`;
+        try {
+            const response = await fetch(url, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` // set token
+                },
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log("User data: " + JSON.stringify(responseData, null, 2));
+            return responseData;
+        } catch (error) {
+            console.error("Error during user registration:", error.message);
+        }
+    }
+
+    static async userUpdate(firstName, lastName, email, risk, fund, stock, crypto) {
+        const url = `${Data.url}/user/me`;
+        const token = getCookie('authCookie');
+
+        try {
+
+            const requestData = {
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                risk: risk,
+                fund: fund,
+                stock: stock,
+                crypto: crypto
+            };
+
+            const response = await fetch(url, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}` // set token
+                },
+                body: JSON.stringify(requestData),
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const responseData = await response.json();
+            console.log("User data updated: " + JSON.stringify(responseData, null, 2));
+            return responseData;
+        } catch (error) {
+            console.error("Error during user update:", error.message);
         }
     }
 

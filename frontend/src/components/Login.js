@@ -22,6 +22,7 @@ function Login() {
             console.error('Response not found!')
         } else {
             setIsLoggedIn(true);
+            localStorage.setItem('loggedIn', 'true');
             document.cookie = "authCookie" + "=" + res; // set cookie
             navigate('/feed');
         }

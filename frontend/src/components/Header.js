@@ -27,16 +27,18 @@ function Header() {
                                 <li className="nav-item">
                                     <a className="nav-link" href="/course">Course</a>
                                 </li>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/profile">Profile</a>
+                                </li>
                             )}
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
-                            <button className="btn btn-primary btn-sm" onClick={() => window.location = '/login'}>Sign in</button>
-                            {/* {!isLoggedIn ? (
+                            {!isLoggedIn ? (
                                 <button className="btn btn-primary btn-sm" onClick={() => window.location('/login')}>Sign in</button>
                             ) : (
                                 <button className="btn btn-danger btn-sm" onClick={handleLogout}>Sign out</button>
-                            )} */}
+                            )}
                         </div>
                     </div >
                 </div >

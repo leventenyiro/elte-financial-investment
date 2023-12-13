@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Data from "../data/Data";
-
+import { useNavigate } from 'react-router-dom' 
 
 function Registration2() {
+
+    const navigate = useNavigate();
 
     // store questions, answers and validaton states
     const [questionData, setQuestionData] = useState([
@@ -212,7 +214,7 @@ function Registration2() {
                 surveyAnswers
             ); // trigger registration function
 
-
+            navigate('/login')
             // handle success
             localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
             navigate('/login')
