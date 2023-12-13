@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from 'react-router-dom';
 import Data from "../data/Data";
 import { useNavigate } from 'react-router-dom' 
 
@@ -146,6 +147,8 @@ function Registration2() {
     ]);
 
     let surveyAnswers = {}; // store survey answers
+
+    const navigate = useNavigate();
     
     useEffect(() => {
         if (localStorage.getItem('reg-form-step-1') === null) {
@@ -214,6 +217,7 @@ function Registration2() {
             navigate('/login')
             // handle success
             localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
+            navigate('/login')
         } catch (error) {
             console.error("Error during registration:", error.message);
         }

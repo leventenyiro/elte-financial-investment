@@ -8,10 +8,15 @@ function Feed() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
 
+    const checkUser = async () => {
+        const fetchedUser = await Data.fetchUser();
+        if (fetchedUser === undefined) {
+            navigate('/login');
+        }
+    }
+
     useEffect(() => { 
-        if (!isLoggedIn) {
-            return navigate('/login');
-        }        
+        checkUser();
     }, []);
 
     useEffect(() => {

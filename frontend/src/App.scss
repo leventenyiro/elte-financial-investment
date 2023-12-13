@@ -15,23 +15,26 @@ hr {
     opacity: 10%;
 }
 
-.Feed {
-    .news {
-        box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
-        border-radius: 8px;
-        overflow: hidden !important;
-        height: 500px;
+.news {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    border-radius: 8px;
+    overflow: hidden !important;
+    height: 500px;
+    text-align: justify;
+    transition: .2s;
 
-        img {
-            height: 200px;
-            width: 100%;
-            margin: 0 !important;
-            padding: 0 !important;
-            object-fit: cover;
-            display: block;
-        }
-
-        text-align: justify;
+    img {
+        height: 200px;
+        width: 100%;
+        margin: 0 !important;
+        padding: 0 !important;
+        object-fit: cover;
+        display: block;
     }
+}
 
+.news:hover {
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 5px 15px 0px;
+    cursor: pointer;
+    transition: .2s;
 }

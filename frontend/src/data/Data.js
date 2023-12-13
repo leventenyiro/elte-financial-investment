@@ -3,6 +3,8 @@ class Data {
 
     static url = "http://localhost:4000"
 
+    static authCookieValue = document.cookie.includes('authCookie=') && document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1];
+
     static async fetchTest() {
         const response = await fetch("http://test.com/");
         return response;
@@ -162,6 +164,52 @@ class Data {
             },
         ];
     }
+
+    static async fetchUser() {
+        const response = await fetch(`${Data.url}/user/me`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.authCookieValue}`,
+            },
+        });
+
+        const res = await response.json();
+        return res;
+    }
+
+    static async fetchMaterialsByUser(user) {
+        const topics = ['basics', 'crypto', 'fund', 'stock'];
+    
+        const materialsByTopic = {};
+    
+        const fetchTopicMaterials = async (topic) => {
+            if (user[topic] || topic === 'basics') {
+                const response = await fetch(`${Data.url}/material/topic/${topic}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${this.authCookieValue}`,
+                    },
+                });
+    
+                if (response.status !== 404) {
+                    const res = await response.json();
+    
+                    // Group materials by topic
+                    materialsByTopic[topic] = res;
+    
+                    return res;
+                }
+            }
+            return [];
+        };
+    
+        const promises = topics.map(fetchTopicMaterials);
+        await Promise.all(promises);
+    
+        return materialsByTopic;
+    }    
 }
 
 export default Data;
