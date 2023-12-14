@@ -24,12 +24,14 @@ function Header() {
                                 <a className="nav-link" href={isLoggedIn ? '/feed' : '/'}>Home</a>
                             </li>
                             {isLoggedIn && (
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/course">Course</a>
-                                </li>
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/profile">Profile</a>
-                                </li>
+                                <div className='d-flex'>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/course">Course</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/profile">Profile</a>
+                                    </li>
+                                </div>
                             )}
                         </ul>
 
