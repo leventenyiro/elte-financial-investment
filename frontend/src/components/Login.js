@@ -8,7 +8,7 @@ function Login() {
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
-    const { setIsLoggedIn } = useAuth();
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
 
     const handleLogin = async (e) => {
 

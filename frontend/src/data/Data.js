@@ -174,6 +174,10 @@ class Data {
             },
         });
 
+        if (response.status === 500) {
+            return undefined;
+        }
+
         const res = await response.json();
         return res;
     }
