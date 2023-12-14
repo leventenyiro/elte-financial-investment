@@ -1,12 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import Data from "../data/Data";
-import { useNavigate } from 'react-router-dom' 
 
 function Registration2() {
-
-    const navigate = useNavigate();
-
     // store questions, answers and validaton states
     const [questionData, setQuestionData] = useState([
         {
