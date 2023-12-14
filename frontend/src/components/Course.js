@@ -32,7 +32,7 @@ function Course() {
                     <h2>{topic.charAt(0).toUpperCase() + topic.slice(1)}</h2>
                     <div className="row">
                         {courseList[topic].map((course, index) => (
-                            <div key={course.id} className='col-md-4 pt-4'>
+                            <div key={course.id} className='col-md-4 pt-4' onClick={() => window.location = '/course/' + course.id}>
                                 <div className='news'>
                                     <h2 className='px-4 pt-4'>{course.title}</h2>
                                     <p className='px-4 py-3'>{course.content}</p>

@@ -12,7 +12,7 @@ import NotFound from './components/NotFound';
 import Feed from './components/Feed';
 import Course from './components/Course';
 import Profile from './components/Profile';
-import CourseDetail from './components/Course';
+import CourseDetail from './components/CourseDetail';
 
 function App() {
   return (

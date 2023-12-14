@@ -213,7 +213,25 @@ class Data {
         await Promise.all(promises);
     
         return materialsByTopic;
-    }    
+    }
+
+    static async fetchMaterialById(id) {
+        try {
+            const response = await fetch(`${Data.url}/material/id/${id}`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${this.authCookieValue}`,
+                },
+            });
+
+            const res = await response.json();
+            return res;
+        } catch (e) {
+            return undefined;
+        }
+
+    }
 }
 
 export default Data;

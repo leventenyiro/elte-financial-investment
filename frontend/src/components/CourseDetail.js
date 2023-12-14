@@ -5,7 +5,7 @@ import Data from '../data/Data';
 
 function CourseDetail() {
     const { id } = useParams();
-    const [courseList, setCourseList] = useState();
+    const [course, setCourse] = useState();
     const { isLoggedIn, setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
 
@@ -15,8 +15,14 @@ function CourseDetail() {
             navigate('/login');
         }
 
+        console.log(id);
         const fetchedMaterial = await Data.fetchMaterialById(id);
-        setCourse(fetchedMaterials);
+
+        if (fetchedMaterial === undefined)
+            navigate('/course');
+
+        console.log(fetchedMaterial);
+        // setCourse(fetchedMaterial);
     };
 
     useEffect(() => {
