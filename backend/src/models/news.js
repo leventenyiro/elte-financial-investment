@@ -26,6 +26,10 @@ News.init(
     topic: {
       type: DataTypes.ENUM,
       values: ["crypto", "stock", "fund", "other"],
+      allowNull: false,
+      validate: {
+        isIn: [["fund", "crypto", "stock", "other"]],
+      },
     },
   },
   {

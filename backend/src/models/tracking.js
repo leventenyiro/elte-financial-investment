@@ -17,8 +17,11 @@ Tracking.init(
     },
     content: {
       type: DataTypes.ENUM,
-      values: ["Material", "Quiz", "Investment"],
+      values: ["material", "quiz", "investment"],
       allowNull: false,
+      validate: {
+        isIn: [["quiz", "investment", "material"]],
+      },
     },
     contentId: {
       type: DataTypes.STRING,

@@ -104,7 +104,7 @@ class InvestmentsController {
           investment: investment,
           yields: yields,
         };
-        TrackingService.add("Investment", investment.id, req.userId);
+        TrackingService.add("investment", investment.id, req.userId);
         return res.status(200).json(output);
       }
     } catch (e) {

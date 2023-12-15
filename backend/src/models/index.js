@@ -10,6 +10,7 @@ import News from "./news.js";
 import Investment from "./investment.js";
 import Yield from "./yield.js";
 import Tracking from "./tracking.js";
+import Notification from "./notification.js";
 
 User.hasOne(Survey, { foreignKey: "userId" });
 Survey.belongsTo(User, { foreignKey: "userId" });
@@ -35,6 +36,9 @@ Yield.belongsTo(Investment, { foreignKey: "investmentId" });
 User.hasMany(Tracking, { foreignKey: "userId" });
 Tracking.belongsTo(User, { foreignKey: "userId" });
 
+User.hasMany(Notification, { foreignKey: "userId" });
+Notification.belongsTo(User, { foreignKey: "userId" });
+
 export {
   User,
   Survey,
@@ -48,4 +52,5 @@ export {
   Investment,
   Yield,
   Tracking,
+  Notification,
 };
