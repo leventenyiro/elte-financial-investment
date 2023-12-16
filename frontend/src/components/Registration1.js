@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 function Registration1() {
     const [firstName, setFirstname] = useState('');
@@ -6,15 +8,15 @@ function Registration1() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passwordAgain, setPasswordAgain] = useState('');
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const navigate = useNavigate();
 
-    // check localStorage state
     useEffect(() => {
+        if (isLoggedIn)
+            navigate('/feed');
         if(localStorage.getItem('reg-form-step-1')) {
             const data = JSON.parse(localStorage.getItem('reg-form-step-1'));
 
-            console.log(JSON.stringify(data))
-
-            // set the saved values
             setFirstname(data.firstName);
             setLastname(data.lastName);
             setEmail(data.email);
@@ -63,7 +65,7 @@ function Registration1() {
             passwordAgain: passwordAgain
         }))
 
-        window.location = '/registration2';
+        navigate('/registration2');
     }
 
     return (

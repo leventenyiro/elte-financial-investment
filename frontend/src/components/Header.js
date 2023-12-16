@@ -1,12 +1,29 @@
+import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-// import Data from '../../data/Data';
+import Data from '../data/Data';
 
 function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const [notificationsNumber, setNotificationsNumber] = useState(0);
+
+    useEffect(() => {
+        // Do any additional header-related logic here
+        console.log(isLoggedIn);
+    }, [isLoggedIn]);
 
     const handleLogout = () => {
+        document.cookie = "authCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false);
     }
+
+    useEffect(() => {
+        const fetchNotification = async () => {
+            const notifications = await Data.fetchNotification();
+            setNotificationsNumber(notifications.length)
+        }
+        
+        fetchNotification();
+    }, []);
 
     return (
         <div className="Header">
@@ -24,20 +41,37 @@ function Header() {
                                 <a className="nav-link" href={isLoggedIn ? '/feed' : '/'}>Home</a>
                             </li>
                             {isLoggedIn && (
-                                <div className='d-flex'>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/course">Course</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/profile">Profile</a>
-                                    </li>
-                                </div>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/course">Course</a>
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/investment">Investment</a>
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="/notifications">
+                                        Notifications
+                                        <span class={`badge rounded-pill ${notificationsNumber > 0 ? 'bg-danger' : 'bg-success'} ms-1`}>
+                                            {notificationsNumber} <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </a>  
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="/profile">
+                                        Profile
+                                    </a>
+                                </li>
                             )}
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
                             {!isLoggedIn ? (
-                                <button className="btn btn-primary btn-sm" onClick={() => window.location('/login')}>Sign in</button>
+                                <button className="btn btn-primary btn-sm" onClick={() => window.location = '/login'}>Sign in</button>
                             ) : (
                                 <button className="btn btn-danger btn-sm" onClick={handleLogout}>Sign out</button>
                             )}
