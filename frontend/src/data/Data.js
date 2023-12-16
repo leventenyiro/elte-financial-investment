@@ -1,10 +1,10 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
 
-    // static url = "http://localhost:4000"
-    static url = "https://elte-financial-investment-api.azurewebsites.net/"
+  // static url = "http://localhost:4000"
+  static url = "https://elte-financial-investment-api.azurewebsites.net/"
 
-    static authCookieValue = document.cookie.includes('authCookie=') ? document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1] : undefined;
+  static authCookieValue = document.cookie.includes('authCookie=') ? document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1] : undefined;
 
   /*
 
@@ -88,7 +88,7 @@ class Data {
       const responseData = await response.json();
       console.log(
         "Registration successful! Response: " +
-          JSON.stringify(responseData, null, 2)
+        JSON.stringify(responseData, null, 2)
       );
     } catch (error) {
       console.error("Error during user registration:", error.message);
@@ -164,21 +164,6 @@ class Data {
     }
   }
 
-  static fetchNews() {
-    // TODO: fetch here
-
-    return [
-      {
-        id: "55367262-7306-4f57-9163-1e97c9acb2ab",
-        title: "Tech Stocks Propel NASDAQ to Record Highs",
-        description:
-          "In a surprising turn of events, major tech stocks experienced a sudden surge, driving the NASDAQ to a record high. Analysts attribute this unexpected boost to positive quarterly earnings reports and growing investor confidence in the sector.",
-        imageUrl:
-          "https://img.freepik.com/free-vector/gradient-stock-market-concept_23-2149166910.jpg",
-      },
-    ];
-  }
-
   static async fetchUser() {
     const response = await fetch(`${Data.url}/user/me`, {
       method: "GET",
@@ -244,31 +229,32 @@ class Data {
     } catch (e) {
       return undefined;
     }
+  }
 
-    static async fetchNews() {
-        const response = await fetch(`${Data.url}/news`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${this.authCookieValue}`,
-            },
-        });
+  static async fetchNews() {
+    const response = await fetch(`${Data.url}/news`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.authCookieValue}`,
+      },
+    });
 
-        const res = await response.json();
-        return res;
-    }
+    const res = await response.json();
+    return res;
+  }
 
-    static async fetchNotification() {
-        const response = await fetch(`${Data.url}/notification`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${this.authCookieValue}`,
-            },
-        });
+  static async fetchNotification() {
+    const response = await fetch(`${Data.url}/notification`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.authCookieValue}`,
+      },
+    });
 
-        const res = await response.json();
-        return res;
+    const res = await response.json();
+    return res;
   }
 
   static async fetchQuiz(id) {
@@ -288,84 +274,84 @@ class Data {
     }
   }
 
-    static async fetchUser() {
-        const response = await fetch(`${Data.url}/user/me`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${this.authCookieValue}`,
-            },
+  static async fetchUser() {
+    const response = await fetch(`${Data.url}/user/me`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        "Authorization": `Bearer ${this.authCookieValue}`,
+      },
+    });
+
+    const res = await response.json();
+    return res;
+  }
+
+  static async fetchInvestmentsByUser(user) {
+    const topics = ['crypto', 'fund', 'stock'];
+
+    const investmentsByTopic = {};
+
+    const fetchTopicInvestments = async (topic) => {
+      if (user[topic] || topic === 'basics') {
+        const response = await fetch(`${Data.url}/investment/topic/${topic}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.authCookieValue}`,
+          },
         });
 
-        const res = await response.json();
-        return res;
-    }
+        if (response.status !== 404) {
+          const res = await response.json();
 
-    static async fetchInvestmentsByUser(user) {
-        const topics = ['crypto', 'fund', 'stock'];
+          // Group investments by topic
+          investmentsByTopic[topic] = res;
+          // const filterByRisk = res.filter((results) => results.risk === user.risk)
+          return investmentsByTopic;
+        }
+      }
+      return [];
+    };
 
-        const investmentsByTopic = {};
-    
-        const fetchTopicInvestments = async (topic) => {
-            if (user[topic] || topic === 'basics') {
-                const response = await fetch(`${Data.url}/investment/topic/${topic}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${this.authCookieValue}`,
-                    },
-                });
-    
-                if (response.status !== 404) {
-                    const res = await response.json();
-    
-                    // Group investments by topic
-                    investmentsByTopic[topic] = res;
-                    // const filterByRisk = res.filter((results) => results.risk === user.risk)
-                    return investmentsByTopic;
-                }
-            }
-            return [];
-        };
+    const promises = topics.map(fetchTopicInvestments);
+    await Promise.all(promises);
 
-        const promises = topics.map(fetchTopicInvestments);
-        await Promise.all(promises);
-    
-        return investmentsByTopic;
-    }
+    return investmentsByTopic;
+  }
 
-    static async fetchMaterialsByUser(user) {
-        const topics = ['basics', 'crypto', 'fund', 'stock'];
-    
-        const materialsByTopic = {};
-    
-        const fetchTopicMaterials = async (topic) => {
-            if (user[topic] || topic === 'basics') {
-                const response = await fetch(`${Data.url}/material/topic/${topic}`, {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${this.authCookieValue}`,
-                    },
-                });
-    
-                if (response.status !== 404) {
-                    const res = await response.json();
-    
-                    // Group materials by topic
-                    materialsByTopic[topic] = res;
-    
-                    return res;
-                }
-            }
-            return [];
-        };
-    
-        const promises = topics.map(fetchTopicMaterials);
-        await Promise.all(promises);
-    
-        return materialsByTopic;
-    }
+  static async fetchMaterialsByUser(user) {
+    const topics = ['basics', 'crypto', 'fund', 'stock'];
+
+    const materialsByTopic = {};
+
+    const fetchTopicMaterials = async (topic) => {
+      if (user[topic] || topic === 'basics') {
+        const response = await fetch(`${Data.url}/material/topic/${topic}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.authCookieValue}`,
+          },
+        });
+
+        if (response.status !== 404) {
+          const res = await response.json();
+
+          // Group materials by topic
+          materialsByTopic[topic] = res;
+
+          return res;
+        }
+      }
+      return [];
+    };
+
+    const promises = topics.map(fetchTopicMaterials);
+    await Promise.all(promises);
+
+    return materialsByTopic;
+  }
 }
 
 export default Data;
