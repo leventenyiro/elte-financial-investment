@@ -6,10 +6,9 @@ function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
 
     useEffect(() => {
-        // console.log(Data.authCookieValue === undefined);
-        setIsLoggedIn(Data.authCookieValue !== undefined);
-    }, [])
-    
+        // Do any additional header-related logic here
+        console.log(isLoggedIn);
+    }, [isLoggedIn]);
 
     const handleLogout = () => {
         document.cookie = "authCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -44,9 +43,10 @@ function Header() {
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
-                            {!isLoggedIn ? (
+                            {!isLoggedIn && (
                                 <button className="btn btn-primary btn-sm" onClick={() => window.location = '/login'}>Sign in</button>
-                            ) : (
+                            )}
+                            {isLoggedIn && (
                                 <button className="btn btn-danger btn-sm" onClick={handleLogout}>Sign out</button>
                             )}
                         </div>

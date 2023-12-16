@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getCookie } from '../utils/getCookie';
+import { useAuth } from '../contexts/AuthContext';
 import Data from '../data/Data';
 
 function Profile() {
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
     const [profileData, setProfileData] = useState({
         firstName: '',
@@ -15,13 +17,12 @@ function Profile() {
         crypto: false
     });
 
-    useEffect(() => { 
-        if (!localStorage.getItem('loggedIn')) {
+    useEffect(() => {
+        if (!isLoggedIn)
             navigate('/login');
-        } else {
-            fetchUserData();
-        }        
-    }, [navigate]);
+        
+        fetchUserData();
+    }, [isLoggedIn]);
 
     const fetchUserData = async () => {
         const response = await Data.userData(getCookie('authCookie'));

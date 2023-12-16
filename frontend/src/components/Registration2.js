@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import Data from "../data/Data";
+
 
 function Registration2() {
     // store questions, answers and validaton states
@@ -145,12 +147,17 @@ function Registration2() {
     let surveyAnswers = {}; // store survey answers
 
     const navigate = useNavigate();
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
     
     useEffect(() => {
+        if (isLoggedIn)
+            navigate('/feed');
+
         if (localStorage.getItem('reg-form-step-1') === null) {
-            window.location = 'registration1';
+            navigate('/registration1');
         }
-    });
+        
+    }, []);
 
     // handle validation
     const handleValidation = (questionId) => {
@@ -210,7 +217,6 @@ function Registration2() {
                 surveyAnswers
             ); // trigger registration function
 
-            navigate('/login')
             // handle success
             localStorage.removeItem('reg-form-step-1'); // remove the first registration page data
             navigate('/login')
@@ -256,7 +262,7 @@ function Registration2() {
                 ))}
                     <div className="row d-flex align-items-center my-5">
                         <div className="col-6">
-                            <button className="btn btn-outline-primary" onClick={() => window.location = '/registration1'}>Previous</button>
+                            <button className="btn btn-outline-primary" onClick={() => navigate('/registration1')}>Previous</button>
                         </div>
                         <div className="col-6 text-end">
                             <button type="submit" className="btn btn-primary">Finish</button>

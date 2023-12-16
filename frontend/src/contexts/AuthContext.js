@@ -8,7 +8,11 @@ export function useAuth() {
 }
 
 export function AuthProvider({ children }) {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(Data.authCookieValue !== undefined);
+
+  // useEffect(() => {
+  //   setIsLoggedIn(isLoggedIn);
+  // }, [isLoggedIn]);
   
   return (
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
