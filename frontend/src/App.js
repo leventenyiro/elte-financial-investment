@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import './App.scss';
+import { AuthProvider } from './contexts/AuthContext';
 import Header from './components/Header';
 import Home from './components/Home';
 import Login from './components/Login';
@@ -10,8 +11,8 @@ import Registration2 from './components/Registration2';
 import NotFound from './components/NotFound';
 import Feed from './components/Feed';
 import Course from './components/Course';
-import { AuthProvider } from './contexts/AuthContext';
 import Profile from './components/Profile';
+import CourseDetail from './components/CourseDetail';
 import Investment from './components/Investment';
 import Notification from './components/Notifications';
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="/registration2" element={<Registration2 />} />
             <Route path='/feed' element={<Feed />} />
             <Route path='/course' element={<Course />} />
+            <Route path='/course/:id' element={<CourseDetail />} />
             <Route path='/investment' element={<Investment />} />
             <Route path='/notifications' element={<Notification />} />
             <Route path='/profile' element={<Profile />} />

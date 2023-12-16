@@ -70,10 +70,9 @@ function Header() {
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
-                            {!isLoggedIn && (
+                            {!isLoggedIn ? (
                                 <button className="btn btn-primary btn-sm" onClick={() => window.location = '/login'}>Sign in</button>
-                            )}
-                            {isLoggedIn && (
+                            ) : (
                                 <button className="btn btn-danger btn-sm" onClick={handleLogout}>Sign out</button>
                             )}
                         </div>
