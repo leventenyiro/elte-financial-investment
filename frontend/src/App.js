@@ -12,6 +12,7 @@ import Feed from './components/Feed';
 import Course from './components/Course';
 import { AuthProvider } from './contexts/AuthContext';
 import Profile from './components/Profile';
+import Investment from './components/Investment';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/registration2" element={<Registration2 />} />
             <Route path='/feed' element={<Feed />} />
             <Route path='/course' element={<Course />} />
+            <Route path='/investment' element={<Investment />} />
             <Route path='/profile' element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
