@@ -37,16 +37,19 @@ function Notification() {
             <h1>Notifications for you</h1>
             <div className="row">
                 { /* id", "text" */ }
-                {notificationsList.length === 0 && <p>You are up to date! :)</p>}
-                {notificationsList.map((noties) => (
-                    <div key={noties.id} className='col-md-4 pt-4'>
-                        <div className='news'>
-                            <h2 className='px-4 pt-4'>{noties.id}</h2>
-                            <p className='px-4 py-3'>{noties.text}</p>
-                            <p className='px-4 py-3'>{noties.topic}</p>
-                        </div>
-                    </div>
-                ))}
+                {notificationsList.length === 0 ? <p>You are up to date! :)</p> :
+                    <>
+                        {notificationsList.map((noties) => (
+                            <div key={noties.id} className='col-md-4 pt-4'>
+                                <div className='news'>
+                                    <h2 className='px-4 pt-4'>{noties.id}</h2>
+                                    <p className='px-4 py-3'>{noties.text}</p>
+                                    <p className='px-4 py-3'>{noties.topic}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </>
+                }
             </div>
         </div>
     );
