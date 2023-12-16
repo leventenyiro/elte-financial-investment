@@ -14,6 +14,7 @@ import Course from './components/Course';
 import Profile from './components/Profile';
 import CourseDetail from './components/CourseDetail';
 import Investment from './components/Investment';
+import Notification from './components/Notifications';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Route path='/course' element={<Course />} />
             <Route path='/course/:id' element={<CourseDetail />} />
             <Route path='/investment' element={<Investment />} />
+            <Route path='/notifications' element={<Notification />} />
             <Route path='/profile' element={<Profile />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

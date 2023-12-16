@@ -1,7 +1,7 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
 
-    //static url = "http://localhost:4000"
+    // static url = "http://localhost:4000"
     static url = "https://elte-financial-investment-api.azurewebsites.net/"
 
     static authCookieValue = document.cookie.includes('authCookie=') ? document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1] : undefined;
@@ -244,6 +244,31 @@ class Data {
     } catch (e) {
       return undefined;
     }
+
+    static async fetchNews() {
+        const response = await fetch(`${Data.url}/news`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.authCookieValue}`,
+            },
+        });
+
+        const res = await response.json();
+        return res;
+    }
+
+    static async fetchNotification() {
+        const response = await fetch(`${Data.url}/notification`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${this.authCookieValue}`,
+            },
+        });
+
+        const res = await response.json();
+        return res;
   }
 
   static async fetchQuiz(id) {
@@ -282,9 +307,6 @@ class Data {
         const investmentsByTopic = {};
     
         const fetchTopicInvestments = async (topic) => {
-
-            console.log(topic)
-            
             if (user[topic] || topic === 'basics') {
                 const response = await fetch(`${Data.url}/investment/topic/${topic}`, {
                     method: "GET",
