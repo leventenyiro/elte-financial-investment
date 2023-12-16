@@ -7,6 +7,7 @@ import materialRouter from "./routes/material_router.js";
 import newsRouter from "./routes/news_router.js";
 import investmentRouter from "./routes/investments_router.js";
 import helmet from "helmet";
+import cors from "cors";
 import notificationRouter from "./routes/notification_router.js";
 
 await sequelizeDb.sync();
@@ -15,8 +16,14 @@ const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+var corsOptions = {
+  origin: "http://localhost:3000",
+  optionsSuccessStatus: 200,
+};
+
 app.use(
   helmet(),
+  cors(corsOptions),
   express.json(),
   express.static(path.join(__dirname, "public"))
 );

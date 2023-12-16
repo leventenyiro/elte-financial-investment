@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Data from "../data/Data";
@@ -7,26 +7,26 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
 
-    const { setIsLoggedIn } = useAuth();
+    useEffect(() => {
+      if (isLoggedIn)
+        navigate('/feed');
+    }, [])
+    
 
     const handleLogin = async (e) => {
-
-        /*
-            "email": "test@example.com",
-            "password": "asdasd",
-        */
         e.preventDefault();
         const res = await Data.userLogin(email, password);
         if (!res) {
-            console.error('Response not found!')
+            console.error('Response not found!');
+            alert('Unsuccessful login');
         } else {
+            document.cookie = "authCookie" + "=" + res;
             setIsLoggedIn(true);
-            localStorage.setItem('loggedIn', 'true');
-            document.cookie = "authCookie" + "=" + res; // set cookie
             navigate('/feed');
+            setEmail('');
         }
-        setEmail('');
         setPassword('');
     } 
 
