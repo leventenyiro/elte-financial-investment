@@ -1,7 +1,7 @@
 import { getCookie } from "../utils/getCookie";
 class Data { 
 
-    // static url = "http://localhost:4000"
+    //static url = "http://localhost:4000"
     static url = "https://elte-financial-investment-api.azurewebsites.net/"
 
     static authCookieValue = document.cookie.includes('authCookie=') ? document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1] : undefined;
@@ -177,6 +177,42 @@ class Data {
 
         const res = await response.json();
         return res;
+    }
+
+    static async fetchInvestmentsByUser(user) {
+        const topics = ['crypto', 'fund', 'stock'];
+
+        const investmentsByTopic = {};
+    
+        const fetchTopicInvestments = async (topic) => {
+
+            console.log(topic)
+            
+            if (user[topic] || topic === 'basics') {
+                const response = await fetch(`${Data.url}/investment/topic/${topic}`, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${this.authCookieValue}`,
+                    },
+                });
+    
+                if (response.status !== 404) {
+                    const res = await response.json();
+    
+                    // Group investments by topic
+                    investmentsByTopic[topic] = res;
+                    // const filterByRisk = res.filter((results) => results.risk === user.risk)
+                    return investmentsByTopic;
+                }
+            }
+            return [];
+        };
+
+        const promises = topics.map(fetchTopicInvestments);
+        await Promise.all(promises);
+    
+        return investmentsByTopic;
     }
 
     static async fetchMaterialsByUser(user) {
