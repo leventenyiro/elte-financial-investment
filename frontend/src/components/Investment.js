@@ -23,7 +23,12 @@ function Investment() {
         fetchInvestments();
     }, []);
 
-    console.log(Array.isArray(investmentList))
+    useEffect(() => {
+        if (!isLoggedIn)
+            navigate('/login');
+        fetchMaterials();
+    }, [isLoggedIn]);
+
     return (
         <div className="Course container">
             <h1>Your Investment Offers</h1>
