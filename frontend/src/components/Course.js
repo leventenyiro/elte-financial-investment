@@ -19,6 +19,9 @@ function Course() {
     };
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login');
+        }
         fetchMaterials();
     }, []);
 
