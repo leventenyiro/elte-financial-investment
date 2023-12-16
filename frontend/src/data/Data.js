@@ -1,6 +1,5 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
-  static url = "http://localhost:4000";
 
     // static url = "http://localhost:4000"
     static url = "https://elte-financial-investment-api.azurewebsites.net/"
