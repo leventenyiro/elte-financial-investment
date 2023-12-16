@@ -26,7 +26,6 @@ function Investment() {
     useEffect(() => {
         if (!isLoggedIn)
             navigate('/login');
-        fetchMaterials();
     }, [isLoggedIn]);
 
     return (
