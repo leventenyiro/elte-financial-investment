@@ -6,6 +6,7 @@ on:
   pull_request:
     branches: [ "main", "67-implement-cicd" ]
   workflow_dispatch:
+  
 
 jobs:
   backend-check:
