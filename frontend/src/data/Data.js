@@ -1,7 +1,8 @@
 import { getCookie } from "../utils/getCookie";
 class Data { 
 
-    static url = "http://localhost:4000"
+    // static url = "http://localhost:4000"
+    static url = "https://elte-financial-investment-api.azurewebsites.net/"
 
     static authCookieValue = document.cookie.includes('authCookie=') && document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1];
 
