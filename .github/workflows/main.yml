@@ -2,9 +2,9 @@ name: Build-Deploy
 
 on:
   push:
-    branches: [ "main", "67-implement-cicd" ]
+    branches: [ "main" ]
   pull_request:
-    branches: [ "main", "67-implement-cicd" ]
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
