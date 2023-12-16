@@ -16,6 +16,8 @@ function Feed() {
     }
 
     useEffect(() => { 
+        if (!isLoggedIn)
+            window.location = '/login';
         checkUser();
     }, []);
 

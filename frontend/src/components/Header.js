@@ -1,17 +1,13 @@
 import { useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
 import Data from '../data/Data';
 
 function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
-    const navigate = useNavigate();
 
     useEffect(() => {
         // console.log(Data.authCookieValue === undefined);
         setIsLoggedIn(Data.authCookieValue !== undefined);
-        if (!isLoggedIn)
-            navigate('/login');
     }, [])
     
 
