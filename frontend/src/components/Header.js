@@ -1,9 +1,10 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import Data from '../data/Data';
 
 function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const [notificationsNumber, setNotificationsNumber] = useState(0);
 
     useEffect(() => {
         // Do any additional header-related logic here
@@ -14,6 +15,15 @@ function Header() {
         document.cookie = "authCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false);
     }
+
+    useEffect(() => {
+        const fetchNotification = async () => {
+            const notifications = await Data.fetchNotification();
+            setNotificationsNumber(notifications.length)
+        }
+        
+        fetchNotification();
+    }, []);
 
     return (
         <div className="Header">
@@ -41,8 +51,20 @@ function Header() {
                                 </li>
                             )}
                             {isLoggedIn && (
-                                <li className="nav-item">
-                                    <a className="nav-link" href="/profile">Profile</a>
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="/notifications">
+                                        Notifications
+                                        <span class={`badge rounded-pill ${notificationsNumber > 0 ? 'bg-danger' : 'bg-success'} ms-1`}>
+                                            {notificationsNumber} <span class="visually-hidden">unread messages</span>
+                                        </span>
+                                    </a>  
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li class="nav-item">
+                                    <a class="nav-link d-flex align-items-center" href="/profile">
+                                        Profile
+                                    </a>
                                 </li>
                             )}
                         </ul>

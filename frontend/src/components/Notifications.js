@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 import Data from '../data/Data';
 
-function Feed() {
-    const [newsList, setNewsList] = useState([]);
+function Notification() {
+    const [notificationsList, setNotificationsList] = useState([]);
     const { isLoggedIn, setIsLoggedIn } = useAuth();
     const navigate = useNavigate();
 
@@ -24,24 +24,26 @@ function Feed() {
     }, [isLoggedIn]);
 
     useEffect(() => {
-        const fetchNews = async () => {
-            const news = await Data.fetchNews();
-            setNewsList(news);
+        const fetchNotification = async () => {
+            const notifications = await Data.fetchNotification();
+            setNotificationsList(notifications);
         }
         
-        fetchNews();
+        fetchNotification();
     }, []);
 
     return (
         <div className="Feed container">
-            <h1>News for you</h1>
+            <h1>Notifications for you</h1>
             <div className="row">
-                {newsList.map((news) => (
-                    <div key={news.id} className='col-md-4 pt-4'>
+                { /* id", "text" */ }
+                {notificationsList.length === 0 && <p>You are up to date! :)</p>}
+                {notificationsList.map((noties) => (
+                    <div key={noties.id} className='col-md-4 pt-4'>
                         <div className='news'>
-                            <h2 className='px-4 pt-4'>{news.title}</h2>
-                            <p className='px-4 py-3'>{news.extract}</p>
-                            <p className='px-4 py-3'>Topic: {news.topic}</p>
+                            <h2 className='px-4 pt-4'>{noties.id}</h2>
+                            <p className='px-4 py-3'>{noties.text}</p>
+                            <p className='px-4 py-3'>{noties.topic}</p>
                         </div>
                     </div>
                 ))}
@@ -50,4 +52,4 @@ function Feed() {
     );
 }
 
-export default Feed;
+export default Notification;
