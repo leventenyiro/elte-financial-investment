@@ -21,17 +21,26 @@ function Header() {
                     <div className="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul className="navbar-nav ms-auto mb-2 mb-sm-0">
                             <li className="nav-item">
-                                <a className="nav-link" href="/">Home</a>
+                                <a className="nav-link" href={isLoggedIn ? '/feed' : '/'}>Home</a>
                             </li>
+                            {isLoggedIn && (
+                                <div className='d-flex'>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/course">Course</a>
+                                    </li>
+                                    <li className="nav-item">
+                                        <a className="nav-link" href="/profile">Profile</a>
+                                    </li>
+                                </div>
+                            )}
                         </ul>
 
                         <div className="d-flex justify-content-md-end mb-2 mb-sm-0">
-                            <button className="btn btn-primary btn-sm" onClick={() => window.location = '/login'}>Sign in</button>
-                            {/* {!isLoggedIn ? (
+                            {!isLoggedIn ? (
                                 <button className="btn btn-primary btn-sm" onClick={() => window.location('/login')}>Sign in</button>
                             ) : (
                                 <button className="btn btn-danger btn-sm" onClick={handleLogout}>Sign out</button>
-                            )} */}
+                            )}
                         </div>
                     </div >
                 </div >

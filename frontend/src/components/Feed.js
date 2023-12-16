@@ -1,8 +1,23 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 import Data from '../data/Data';
 
 function Feed() {
     const [newsList, setNewsList] = useState([]);
+    const { isLoggedIn, setIsLoggedIn } = useAuth();
+    const navigate = useNavigate();
+
+    const checkUser = async () => {
+        const fetchedUser = await Data.fetchUser();
+        if (fetchedUser === undefined) {
+            navigate('/login');
+        }
+    }
+
+    useEffect(() => { 
+        checkUser();
+    }, []);
 
     useEffect(() => {
         setNewsList(Data.fetchNews());

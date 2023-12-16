@@ -13,8 +13,12 @@ User.init(
       unique: true,
     },
     role: {
-      type: DataTypes.ENUM("user", "admin"),
+      type: DataTypes.ENUM,
+      values: ["user", "admin"],
       allowNull: false,
+      validate: {
+        isIn: [["user", "admin"]],
+      },
     },
     firstName: {
       type: DataTypes.STRING,
@@ -28,13 +32,32 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     risk: {
-      type: DataTypes.ENUM("low", "medium", "high"),
+      type: DataTypes.ENUM,
+      values: ["low", "medium", "high"],
+      allowNull: false,
+      validate: {
+        isIn: [["low", "medium", "high"]],
+      },
+    },
+    fund: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    stock: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
+    crypto: {
+      type: DataTypes.BOOLEAN,
       allowNull: false,
     },
   },
