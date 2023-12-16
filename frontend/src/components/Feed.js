@@ -15,9 +15,20 @@ function Feed() {
         }
     }
 
-    useEffect(() => { 
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login');
+        }
+
+        const checkUser = async () => {
+            const fetchedUser = await Data.fetchUser();
+            if (fetchedUser === undefined) {
+                navigate('/login');
+            }
+        };
+
         checkUser();
-    }, []);
+    }, [isLoggedIn]);
 
     useEffect(() => {
         setNewsList(Data.fetchNews());

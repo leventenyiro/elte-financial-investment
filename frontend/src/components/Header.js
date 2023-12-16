@@ -1,10 +1,17 @@
+import { useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-// import Data from '../../data/Data';
+import Data from '../data/Data';
 
 function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
 
+    useEffect(() => {
+        // Do any additional header-related logic here
+        console.log(isLoggedIn);
+    }, [isLoggedIn]);
+
     const handleLogout = () => {
+        document.cookie = "authCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false);
     }
 
@@ -24,14 +31,14 @@ function Header() {
                                 <a className="nav-link" href={isLoggedIn ? '/feed' : '/'}>Home</a>
                             </li>
                             {isLoggedIn && (
-                                <div className='d-flex'>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/course">Course</a>
-                                    </li>
-                                    <li className="nav-item">
-                                        <a className="nav-link" href="/profile">Profile</a>
-                                    </li>
-                                </div>
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/course">Course</a>
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li className="nav-item">
+                                    <a className="nav-link" href="/profile">Profile</a>
+                                </li>
                             )}
                         </ul>
 

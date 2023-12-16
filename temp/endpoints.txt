@@ -6,8 +6,9 @@ Belso, adatbazis hiba:                  500
 Nincs ilyen felhasznalo/material/:      404
 Ha nincs token:                         500
 Ha nincs ilyen id/topic:                404
+Ha nincs ilyen user notification        404
 Ha rossz a pw:                          401
-Ha nincsen hir/material
+Ha nincsen hir/material/notification
     az adatbazisban (empty json)        200
 
 HA MINDEN OKES:                         200
@@ -46,3 +47,15 @@ NEWS :: topic ["crypto", "fund", "stock", "other"]
 
 GET /news           {Mindent visszaad}          OK
 GET /news/id/:id                                OK
+
+----------------------------------------------------------------------------------
+NOTIFICATION
+    topic ["crypto", "fund", "stock"]
+    contentType ["quiz","investment","material"]
+----------------------------------------------------------------------------------
+
+GET /notification {Minden nem olvasott}
+PATCH /notification {JSON bodyban id-t visszakuldeni}
+
+SAMPLE MESSAGE: 
+    New Material/Quiz/Investing tip: Material/Quiz/Investment.title

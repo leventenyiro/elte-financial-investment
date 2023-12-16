@@ -25,7 +25,7 @@ class MaterialController {
       if (!material) {
         return res.status(404).json({ message: "Not found." });
       } else {
-        TrackingService.add("Material", material.id, req.userId);
+        TrackingService.add("material", material.id, req.userId);
         res.status(200).json(material);
       }
     } catch (e) {
@@ -85,7 +85,7 @@ class MaterialController {
         output.push(temp);
       }
       if (output.length > 0) {
-        TrackingService.add("Quiz", quiz.id, req.userId);
+        TrackingService.add("quiz", quiz.id, req.userId);
         return res.status(200).json({
           id: quiz.id,
           title: quiz.title,

@@ -16,6 +16,9 @@ User.init(
       type: DataTypes.ENUM,
       values: ["user", "admin"],
       allowNull: false,
+      validate: {
+        isIn: [["user", "admin"]],
+      },
     },
     firstName: {
       type: DataTypes.STRING,
@@ -29,6 +32,9 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
       type: DataTypes.STRING,
@@ -38,6 +44,9 @@ User.init(
       type: DataTypes.ENUM,
       values: ["low", "medium", "high"],
       allowNull: false,
+      validate: {
+        isIn: [["low", "medium", "high"]],
+      },
     },
     fund: {
       type: DataTypes.BOOLEAN,

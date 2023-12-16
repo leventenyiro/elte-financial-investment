@@ -26,6 +26,10 @@ Material.init(
     topic: {
       type: DataTypes.ENUM,
       values: ["crypto", "stock", "fund", "basics"],
+      allowNull: false,
+      validate: {
+        isIn: [["fund", "crypto", "stock", "basics"]],
+      },
     },
   },
   {

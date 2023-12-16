@@ -1,9 +1,9 @@
-import { DataTypes, Model, STRING } from "sequelize";
+import { DataTypes, Model } from "sequelize";
 import sequelizeDb from "../database/db.js";
 
-class Investment extends Model {}
+class Notification extends Model {}
 
-Investment.init(
+Notification.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -11,35 +11,35 @@ Investment.init(
       autoIncrement: true,
       allowNull: false,
     },
-    title: {
-      type: DataTypes.STRING,
-      allowNull: false,
-    },
-    content: {
+    text: {
       type: DataTypes.TEXT,
       allowNull: false,
     },
-    risk: {
+    contentType: {
       type: DataTypes.ENUM,
-      values: ["low", "medium", "high"],
+      values: ["quiz", "investment", "material"],
       allowNull: false,
       validate: {
-        isIn: [["low", "medium", "high"]],
+        isIn: [["quiz", "investment", "material"]],
       },
     },
     topic: {
       type: DataTypes.ENUM,
-      values: ["fund", "crypto", "stock"],
+      values: ["crypto", "stock", "fund"],
       allowNull: false,
       validate: {
         isIn: [["fund", "crypto", "stock"]],
       },
     },
+    seenByUser: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+    },
   },
   {
     sequelize: sequelizeDb,
-    tableName: "investments",
+    tableName: "notification",
   }
 );
 
-export default Investment;
+export default Notification;

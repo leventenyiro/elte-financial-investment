@@ -21,8 +21,10 @@ function Course() {
     };
 
     useEffect(() => {
+        if (!isLoggedIn)
+            navigate('/login');
         fetchMaterials();
-    }, []);
+    }, [isLoggedIn]);
 
     return (
         <div className="Course container">

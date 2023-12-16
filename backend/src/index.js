@@ -1,13 +1,14 @@
 import express from "express";
 import userRouter from "./routes/user_router.js";
 import sequelizeDb from "./database/db.js";
-import cors from "cors";
 import path from "path";
 import { fileURLToPath } from "url";
 import materialRouter from "./routes/material_router.js";
 import newsRouter from "./routes/news_router.js";
 import investmentRouter from "./routes/investments_router.js";
 import helmet from "helmet";
+import cors from "cors";
+import notificationRouter from "./routes/notification_router.js";
 
 await sequelizeDb.sync();
 
@@ -35,9 +36,13 @@ app.use("/user", userRouter);
 app.use("/material", materialRouter);
 app.use("/news", newsRouter);
 app.use("/investment", investmentRouter);
+app.use("/notification", notificationRouter);
 
-app.listen(process.env.PORT, () => {
+const server = app.listen(process.env.PORT, () => {
   console.log(`Server running at http://localhost:${process.env.PORT}`);
 });
+
+server.keepAliveTimeout = 600 * 1000;
+server.headersTimeout = 610 * 1000;
 
 export default app;
