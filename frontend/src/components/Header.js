@@ -37,6 +37,11 @@ function Header() {
                             )}
                             {isLoggedIn && (
                                 <li className="nav-item">
+                                    <a className="nav-link" href="/investment">Investment</a>
+                                </li>
+                            )}
+                            {isLoggedIn && (
+                                <li className="nav-item">
                                     <a className="nav-link" href="/profile">Profile</a>
                                 </li>
                             )}
