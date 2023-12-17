@@ -36,7 +36,7 @@ function Feed() {
         <div className="Feed container">
             <h1>News for you</h1>
             <div className="row">
-                {newsList.length > 0 && newsList.map((news) => (
+                {newsList.length > 0 ? newsList.map((news) => (
                     <div key={news.id} className='col-md-4 pt-4'>
                         <div className='news'>
                             <h2 className='px-4 pt-4'>{news.title}</h2>
@@ -44,7 +44,11 @@ function Feed() {
                             <p className='px-4 py-3'>Topic: {news.topic}</p>
                         </div>
                     </div>
-                ))}
+                )) : (
+                    <div>
+                        <h2>Recently you don't have any news.</h2>
+                    </div>
+                )}
             </div>
         </div>
     );
