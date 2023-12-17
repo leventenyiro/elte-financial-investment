@@ -51,18 +51,18 @@ function Header() {
                                 </li>
                             )}
                             {isLoggedIn && (
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center" href="/notifications">
+                                <li className="nav-item">
+                                    <a className="nav-link d-flex align-items-center" href="/notifications">
                                         Notifications
-                                        <span class={`badge rounded-pill ${notificationsNumber > 0 ? 'bg-danger' : 'bg-success'} ms-1`}>
-                                            {notificationsNumber} <span class="visually-hidden">unread messages</span>
+                                        <span className={`badge rounded-pill ${notificationsNumber > 0 ? 'bg-danger' : 'bg-success'} ms-1`}>
+                                            {notificationsNumber} <span className="visually-hidden">unread messages</span>
                                         </span>
                                     </a>  
                                 </li>
                             )}
                             {isLoggedIn && (
-                                <li class="nav-item">
-                                    <a class="nav-link d-flex align-items-center" href="/profile">
+                                <li className="nav-item">
+                                    <a className="nav-link d-flex align-items-center" href="/profile">
                                         Profile
                                     </a>
                                 </li>

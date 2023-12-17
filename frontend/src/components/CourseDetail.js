@@ -85,7 +85,6 @@ function CourseDetail() {
 
   return (
     <div className="CourseDetail container">
-      <h1>{course.title}</h1>
       <cite className="text-secondary">
         {course.createdAt && format(new Date(course.createdAt), "yyyy-MM-dd")}
       </cite>
@@ -95,7 +94,7 @@ function CourseDetail() {
           <i>{course.abstract}</i>
         </p>
       )}
-      <p className="mt-2">{course.content}</p>
+      <p className="mt-2" dangerouslySetInnerHTML={{ __html: course.content }} />
 
       {quiz !== undefined && (
         <div>
