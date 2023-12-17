@@ -3,39 +3,43 @@ Risk: High
 Tesla (TSLA)
 About: Tesla, Inc. is a pioneering electric vehicle (EV) and clean energy company founded by Elon Musk. Their mission is to accelerate the world's transition to sustainable energy through innovative electric cars, solar products, and energy storage solutions. Tesla's approach to cutting-edge technology and disruption in the automotive industry has garnered significant attention.
 Stock Overview: Tesla's stock is known for its extreme volatility, influenced by factors like market sentiment, regulatory changes, production challenges, and global economic conditions. While it has shown remarkable growth, it's crucial to note the high risk associated with its stock due to its susceptibility to market fluctuations.
+Annual return: 2018 -> 6.82%, 2019 -> 25.7%, 2020 -> 743.4%, 2021 -> 49.7%, 2022 -> -65.03%
 
 Amazon (AMZN)
 About: Amazon.com, Inc. is a multinational technology company focusing on e-commerce, cloud computing, digital streaming, and artificial intelligence through Amazon Web Services (AWS).
 Stock Overview: Amazon's stock can be volatile due to its reliance on consumer spending trends, market competition, and its diverse business operations.
+Annual return: 2018 -> 28.4%, 2019 -> 23.0%, 2020 -> 76.3%, 2021 -> 2.4%, 2022 -> -49.6%
 
 Meta Platforms Inc. (META)
 About: Meta, formerly Facebook, is a social media conglomerate owning platforms like Facebook, Instagram, WhatsApp, and Oculus VR.
 Stock Overview: Meta's stock can experience volatility due to changes in user engagement, regulatory challenges, and shifts in advertising revenue.
+Annual return: 2018 -> -25.7%, 2019 -> 56.6%, 2020 -> 33.1%, 2021 -> 23.1%, 2022 -> -64.2%
 
 Risk: Medium
 
 Apple (AAPL)
 About: Apple Inc. is a multinational technology company renowned for its consumer electronics, including the iPhone, iPad, Mac, and software services like the App Store and iCloud. Apple's brand loyalty and diverse product ecosystem contribute significantly to its success.
 Stock Overview: Apple's stock generally exhibits stability due to its diversified product range and strong customer base. However, it can still be influenced by market trends, global economic conditions, and the success of new product launches.
+Annual return: 2018 -> -6.8%, 2019 -> 86.16%, 2020 -> 80.7%, 2021 -> 33.82%, 2022 -> -26.8%
 
 Microsoft (MSFT)
 About: Microsoft Corporation is a tech giant providing a wide range of software, hardware, and cloud-based services globally. It's known for its Windows operating system, Office Suite, and Azure cloud platform.
 Stock Overview: Microsoft's stock is relatively stable compared to higher-risk tech companies due to its consistent growth in cloud computing and software services. However, market fluctuations and industry competition can impact its stock performance.
-
-Siemens AG (SIEGY)
-About: Siemens is a global technology company operating in various sectors like industry, energy, healthcare, and infrastructure.
-Stock Overview: Siemens' stock stability is tied to its diverse business segments, technological advancements, and global industrial demand.
+Annual return: 2018 -> 18.7%, 2019 -> 55.3%, 2020 -> 41.0%, 2021 -> 51.2%, 2022 -> -28.7%
 
 Risk: Low
 
 Johnson & Johnson (JNJ)
 About: Johnson & Johnson is a multinational corporation specializing in pharmaceuticals, medical devices, and consumer packaged goods. It's known for brands like Band-Aid, Tylenol, and medical devices used in surgeries.
 Stock Overview: J&J's stock is considered low-risk due to its diversified product lines, stability in the healthcare sector, and continuous demand for pharmaceuticals and medical products.
+Annual return: 2018 -> -7.6%, 2019 -> 13.0%, 2020 -> 7.9%, 2021 -> 8.7%, 2022 -> 3.3%
 
 Procter & Gamble (PG)
 About: Procter & Gamble is a global consumer goods corporation manufacturing a wide range of products, including personal care, cleaning agents, and hygiene products. Brands like Pampers, Gillette, and Tide fall under its umbrella.
 Stock Overview: PG's stock is relatively low-risk due to its stable consumer products and global market presence, making it less susceptible to drastic market fluctuations compared to higher-risk industries.
+Annual return: 2018 -> 0.04%, 2019 -> 35.9%, 2020 -> 11.4%, 2021 -> 17.6%, 2022 -> -7.4%
 
 The Coca-Cola Company (KO)
 About: Coca-Cola is a multinational beverage corporation known for its soft drinks, including Coca-Cola, Sprite, and Fanta, along with a diversified portfolio of beverages.
 Stock Overview: Coca-Cola's stock is considered low-risk due to its stability in the beverage market and consistent demand for its products globally.
+Annual return: 2018 -> 3.2%, 2019 -> 16.9%, 2020 -> -0.92%, 2021 -> 7.97%, 2022 -> 7.4%
