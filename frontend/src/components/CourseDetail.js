@@ -41,7 +41,6 @@ function CourseDetail() {
       setQuiz(undefined);
     } else {
       setQuiz(fetchedQuiz);
-      console.log(quiz);
     }
   };
 

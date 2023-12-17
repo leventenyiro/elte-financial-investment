@@ -31,8 +31,6 @@ class Data {
       password: password,
     };
 
-    console.log(JSON.stringify(requestData, null, 2));
-
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -47,9 +45,6 @@ class Data {
       }
 
       const responseData = await response.json();
-      console.log(
-        "Login successful! Response: " + JSON.stringify(responseData, null, 2)
-      );
 
       return responseData?.token;
     } catch (error) {
@@ -74,8 +69,6 @@ class Data {
       survey: surveyAnswers,
     };
 
-    console.log(JSON.stringify(requestData, null, 2));
-
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -90,10 +83,6 @@ class Data {
       }
 
       const responseData = await response.json();
-      console.log(
-        "Registration successful! Response: " +
-          JSON.stringify(responseData, null, 2)
-      );
     } catch (error) {
       console.error("Error during user registration:", error.message);
     }
@@ -115,7 +104,6 @@ class Data {
       }
 
       const responseData = await response.json();
-      console.log("User data: " + JSON.stringify(responseData, null, 2));
       return responseData;
     } catch (error) {
       console.error("Error during user registration:", error.message);
@@ -159,9 +147,6 @@ class Data {
       }
 
       const responseData = await response.json();
-      console.log(
-        "User data updated: " + JSON.stringify(responseData, null, 2)
-      );
       return responseData;
     } catch (error) {
       console.error("Error during user update:", error.message);

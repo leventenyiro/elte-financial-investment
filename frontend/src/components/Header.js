@@ -6,11 +6,6 @@ function Header() {
     const { isLoggedIn, setIsLoggedIn } = useAuth();
     const [notificationsNumber, setNotificationsNumber] = useState(0);
 
-    useEffect(() => {
-        // Do any additional header-related logic here
-        console.log(isLoggedIn);
-    }, [isLoggedIn]);
-
     const handleLogout = () => {
         document.cookie = "authCookie=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
         setIsLoggedIn(false);

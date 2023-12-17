@@ -47,8 +47,6 @@ function Profile() {
             profileData?.stock,
             profileData?.crypto,
         );
-
-        console.log(JSON.stringify(response, null, 2))
     };
 
     return (

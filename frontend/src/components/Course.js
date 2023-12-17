@@ -10,7 +10,6 @@ function Course() {
 
     const fetchMaterials = async () => {
         const fetchedUser = await Data.fetchUser();
-        console.log(fetchedUser);
         if (fetchedUser === undefined) {
             setIsLoggedIn(false);
             window.location = '/login';
