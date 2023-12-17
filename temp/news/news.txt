@@ -1,16 +1,12 @@
 Title: "SEC Rejects Coinbase's Call for New Crypto Regulations"
 
-Summary: "The SEC's dismissal of Coinbase's request highlights the regulator's stance on current crypto regulations, impacting the industry's future trajectory in the United States."
+Summary: The SEC's dismissal of Coinbase's request highlights the regulator's stance on current crypto regulations, impacting the industry's future trajectory in the United States."
 
-Article: "The SEC rejected Coinbase's request for new cryptocurrency regulations. Coinbase, a major cryptocurrency exchange, sought regulatory support to establish clearer and more reliable guidelines within the crypto space.
-
+The SEC rejected Coinbase's request for new cryptocurrency regulations. Coinbase, a major cryptocurrency exchange, sought regulatory support to establish clearer and more reliable guidelines within the crypto space.
 However, the SEC decided that their current regulations and guidelines adequately cover activities within the cryptocurrency industry, deeming new regulations unnecessary at this time. Consequently, the SEC did not support Coinbase's initiative.
-
 This decision emphasizes the current state of cryptocurrency regulation in the United States and the approach that the SEC believes is sufficient for the industry's operations and investor protection. The initiation by Coinbase and the SEC's response could have a significant long-term impact on the cryptocurrency market and the future regulatory landscape in the United States."
 
-Topic: Crypto
-
-https://www.coindesk.com/policy/2023/12/15/us-sec-denies-coinbases-push-for-crypto-regulations-as-unwarranted/?_gl=1*1uy455p*_up*MQ..*_ga*MTEyNDI4OTUzNC4xNzAyODA3Nzcy*_ga_VM3STRYVN8*MTcwMjgwNzc3MS4xLjEuMTcwMjgwODI5My4wLjAuMA..
+Source: https://www.coindesk.com/policy/2023/12/15/us-sec-denies-coinbases-push-for-crypto-regulations-as-unwarranted/?_gl=1*1uy455p*_up*MQ..*_ga*MTEyNDI4OTUzNC4xNzAyODA3Nzcy*_ga_VM3STRYVN8*MTcwMjgwNzc3MS4xLjEuMTcwMjgwODI5My4wLjAuMA..
 
 ----------------------------------------------------------------------------
 

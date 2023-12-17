@@ -1,35 +1,35 @@
 Bitcoin (BTC)
-Description: Bitcoin is the first and most well-known cryptocurrency, created by an unknown person or group using the pseudonym Satoshi Nakamoto in 2009. It operates on a decentralized network using blockchain technology, allowing for peer-to-peer transactions without the need for intermediaries like banks. Bitcoin is often referred to as "digital gold" and has gained widespread adoption and recognition as a store of value.
+Bitcoin is the first and most well-known cryptocurrency, created by an unknown person or group using the pseudonym Satoshi Nakamoto in 2009. It operates on a decentralized network using blockchain technology, allowing for peer-to-peer transactions without the need for intermediaries like banks. Bitcoin is often referred to as "digital gold" and has gained widespread adoption and recognition as a store of value.
 Annual return: 2018 -> -72.6%, 2019 -> 87.7%, 2020 -> 305.6%, 2021 -> 65.9%, 2022 -> -65.6%
 
 Ethereum (ETH)
-Description: Ethereum is a decentralized platform that enables developers to build and deploy smart contracts and decentralized applications (DApps). Launched in 2015 by Vitalik Buterin, Ethereum introduced the concept of programmable money, allowing users to create their own tokens and execute complex smart contracts. Its native cryptocurrency is called Ether (ETH).
+Ethereum is a decentralized platform that enables developers to build and deploy smart contracts and decentralized applications (DApps). Launched in 2015 by Vitalik Buterin, Ethereum introduced the concept of programmable money, allowing users to create their own tokens and execute complex smart contracts. Its native cryptocurrency is called Ether (ETH).
 Annual return: 2018 -> -82.4%, 2019 -> 6.9%, 2020 -> 471.8%, 2021 -> 440.5%, 2022 -> -66.7%
 
 Binance Coin (BNB)
-Description: Binance Coin is the native cryptocurrency of the Binance exchange, one of the largest cryptocurrency exchanges globally. Initially launched as an ERC-20 token on the Ethereum blockchain, BNB later migrated to Binance's proprietary blockchain, Binance Chain. BNB is used to pay for trading fees on the Binance platform and participate in various activities within the Binance ecosystem.
+Binance Coin is the native cryptocurrency of the Binance exchange, one of the largest cryptocurrency exchanges globally. Initially launched as an ERC-20 token on the Ethereum blockchain, BNB later migrated to Binance's proprietary blockchain, Binance Chain. BNB is used to pay for trading fees on the Binance platform and participate in various activities within the Binance ecosystem.
 Annual return: 2018 -> -33.2%, 2019 -> 122.2%, 2020 -> 122.7%, 2021 -> 1730.4%, 2022 -> -53.7%
 
 Cardano (ADA)
-Description: Cardano is a blockchain platform known for its focus on sustainability, scalability, and interoperability. Founded by Charles Hoskinson, one of the co-founders of Ethereum, Cardano aims to provide a more secure and scalable infrastructure for the development of DApps and smart contracts.
+Cardano is a blockchain platform known for its focus on sustainability, scalability, and interoperability. Founded by Charles Hoskinson, one of the co-founders of Ethereum, Cardano aims to provide a more secure and scalable infrastructure for the development of DApps and smart contracts.
 Annual return: 2018 -> -89.7%, 2019 -> 5.2%, 2020 -> 452.6%, 2021 -> 841.5%, 2022 -> -80.5%
 
 Stellar (XLM)
-Description: Stellar is an open-source network designed to facilitate cross-asset transfers of value, including payments. It aims to connect financial institutions and enable low-cost and fast transactions, especially for international money transfers and remittances.
+Stellar is an open-source network designed to facilitate cross-asset transfers of value, including payments. It aims to connect financial institutions and enable low-cost and fast transactions, especially for international money transfers and remittances.
 Annual return: 2018 -> -79.8%, 2019 -> 13.6%, 2020 -> 186.6%, 2021 -> 225.6%, 2022 -> -72.4%
 
 Chainlink (LINK)
-Description: Chainlink is a decentralized oracle network that connects smart contracts with real-world data, enabling them to interact with external sources reliably. It helps bridge the gap between blockchain and off-chain data, playing a crucial role in decentralized finance (DeFi) applications.
+Chainlink is a decentralized oracle network that connects smart contracts with real-world data, enabling them to interact with external sources reliably. It helps bridge the gap between blockchain and off-chain data, playing a crucial role in decentralized finance (DeFi) applications.
 Annual return: 2018 -> -51.2%, 2019 -> 520.5%, 2020 -> 530.6%, 2021 -> 184.9%, 2022 -> -76.0%
 
 Polkadot (DOT)
-Description: Polkadot is a multi-chain blockchain platform that aims to enable different blockchains to transfer messages and value in a trust-free fashion. Founded by Dr. Gavin Wood, one of the co-founders of Ethereum, Polkadot focuses on interoperability, scalability, and empowering developers to create decentralized applications.
+Polkadot is a multi-chain blockchain platform that aims to enable different blockchains to transfer messages and value in a trust-free fashion. Founded by Dr. Gavin Wood, one of the co-founders of Ethereum, Polkadot focuses on interoperability, scalability, and empowering developers to create decentralized applications.
 Annual return: 2020 -> (Launch year), 2021 -> 97.7%, 2022 -> -83.8%
 
 Solana (SOL)
-Description: Solana is a high-performance blockchain platform known for its fast transaction speeds and low fees. It's designed to support decentralized apps and crypto projects by using a unique proof-of-history (PoH) consensus combined with proof-of-stake (PoS) mechanisms.
+Solana is a high-performance blockchain platform known for its fast transaction speeds and low fees. It's designed to support decentralized apps and crypto projects by using a unique proof-of-history (PoH) consensus combined with proof-of-stake (PoS) mechanisms.
 Annual return: 2020 -> (Launch year), 2021 -> 10780.6%, 2022 -> -94.3%
 
 Avalanche (AVAX)
-Description: Avalanche is a highly scalable, open-source platform for launching decentralized applications and enterprise blockchain deployments. It offers a secure and efficient framework for building custom blockchain networks and interoperable decentralized finance (DeFi) solutions.
+Avalanche is a highly scalable, open-source platform for launching decentralized applications and enterprise blockchain deployments. It offers a secure and efficient framework for building custom blockchain networks and interoperable decentralized finance (DeFi) solutions.
 Annual return: 2020 -> (Launch year), 2021 -> 3593.7%, 2022 -> -89.1%

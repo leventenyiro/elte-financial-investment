@@ -10,8 +10,6 @@ import helmet from "helmet";
 import cors from "cors";
 import notificationRouter from "./routes/notification_router.js";
 
-await sequelizeDb.sync();
-
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
