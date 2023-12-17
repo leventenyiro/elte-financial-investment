@@ -1,4 +1,4 @@
-import { param } from "express-validator";
+import { param, body } from "express-validator";
 
 class InvestmentValidator {
   checkTopic() {
@@ -9,6 +9,14 @@ class InvestmentValidator {
   }
   checkId() {
     return [param("id").notEmpty().isNumeric()];
+  }
+  checkInv() {
+    return [
+      body("topic").notEmpty().isIn(["stock", "fund", "crypto"]),
+      body("risk").notEmpty().isIn(["high", "medium", "low"]),
+      body("title").notEmpty(),
+      body("content").notEmpty(),
+    ];
   }
 }
 

@@ -1,6 +1,6 @@
 import { User, Notification } from "../models/index.js";
 
-class NotificationService {
+export class NotificationService {
   async addNotification(contentType, topic, title) {
     try {
       let users;
@@ -42,5 +42,3 @@ class NotificationService {
     }
   }
 }
-
-export default new NotificationService();

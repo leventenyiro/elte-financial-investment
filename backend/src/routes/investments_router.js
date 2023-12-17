@@ -30,5 +30,12 @@ investmentRouter.get(
   errorHandler,
   investmentController.getById
 );
+investmentRouter.post(
+  "/seed",
+  authGuard,
+  investmentValidator.checkInv(),
+  errorHandler,
+  investmentController.seed
+);
 
 export default investmentRouter;
