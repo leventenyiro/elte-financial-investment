@@ -1,6 +1,6 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
-  static url = "https://elte-financial-investment-rest.azurewebsites.net/";
+  static url = "https://elte-financial-investment-rest.azurewebsites.net";
 
   static authCookieValue = document.cookie.includes("authCookie=")
     ? document.cookie
