@@ -35,8 +35,8 @@ function Course() {
                     <div className="row">
                         {courseList[topic].map((course, index) => (
                             <div key={course.id} className='col-md-4 pt-4' onClick={() => window.location = '/course/' + course.id}>
-                                <div className='news'>
-                                    <h2 className='px-4 pt-4'>{course.title}</h2>
+                                <div className='news course'>
+                                    <h3 className='px-4 pt-4'>{course.title}</h3>
                                     <p className='px-4 py-3'>{course.content}</p>
                                 </div>
                             </div>

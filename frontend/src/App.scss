@@ -1,3 +1,7 @@
+body {
+    background-color: #c1fba450;
+}
+
 .question-number {
     font-size: 160px;
     opacity: 25%;
@@ -17,6 +21,7 @@ hr {
 
 .news {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    background-color: white;
     border-radius: 8px;
     overflow: hidden !important;
     height: 500px;
@@ -31,6 +36,10 @@ hr {
         object-fit: cover;
         display: block;
     }
+}
+
+.course {
+    height: 200px !important;
 }
 
 .news:hover {

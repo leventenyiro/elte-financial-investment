@@ -13,6 +13,7 @@ import Feed from './components/Feed';
 import Course from './components/Course';
 import Profile from './components/Profile';
 import CourseDetail from './components/CourseDetail';
+import InvestmentDetail from './components/InvestmentDetail';
 import Investment from './components/Investment';
 import Notification from './components/Notifications';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path='/feed' element={<Feed />} />
             <Route path='/course' element={<Course />} />
             <Route path='/course/:id' element={<CourseDetail />} />
+            <Route path='/investment/:id' element={<InvestmentDetail />} />
             <Route path='/investment' element={<Investment />} />
             <Route path='/notifications' element={<Notification />} />
             <Route path='/profile' element={<Profile />} />

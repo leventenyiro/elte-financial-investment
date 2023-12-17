@@ -29,14 +29,14 @@ function Investment() {
     }, [isLoggedIn]);
 
     return (
-        <div className="Course container">
+        <div className="Investment container">
             <h1>Your Investment Offers</h1>
             {investmentList && Object.keys(investmentList).map((topic) => (
                 <div key={topic}>
                     <h2>{topic.charAt(0).toUpperCase() + topic.slice(1)}</h2>
                     <div className="row">
                         {investmentList[topic].map((inv, index) => (
-                            <div key={inv.id} className="col-sm-6 col-md-4 col-lg-3 pt-4">
+                            <div key={inv.id} className="col-sm-6 col-md-4 col-lg-3 pt-4" style={{cursor: 'pointer'}} onClick={() => navigate('/investment/' + inv.id)}>
                             <div className="col">
                                 <div className="card h-100">
                                     <div className="card-body">

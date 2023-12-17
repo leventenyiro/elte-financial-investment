@@ -112,7 +112,7 @@ function CourseDetail() {
                     value={answer.answer}
                   />
                   <label
-                    className="form-check-label"
+                    className="form-check-label ms-2"
                     htmlFor={`${item.question.id}-${answer.id}`}
                   >
                     {answer.answer}

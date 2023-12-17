@@ -1,6 +1,7 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
-  static url = "https://elte-financial-investment-rest.azurewebsites.net";
+  // static url = "https://elte-financial-investment-rest.azurewebsites.net";
+  static url = "http://localhost:4000";
 
   static authCookieValue = document.cookie.includes("authCookie=")
     ? document.cookie
@@ -220,6 +221,23 @@ class Data {
   static async fetchMaterialById(id) {
     try {
       const response = await fetch(`${Data.url}/material/id/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${this.authCookieValue}`,
+        },
+      });
+
+      const res = await response.json();
+      return res;
+    } catch (e) {
+      return undefined;
+    }
+  }
+
+  static async fetchInvestmentById(id) {
+    try {
+      const response = await fetch(`${Data.url}/investment/id/${id}`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",

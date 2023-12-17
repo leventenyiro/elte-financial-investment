@@ -24,7 +24,7 @@ function Login() {
         } else {
             document.cookie = "authCookie" + "=" + res;
             setIsLoggedIn(true);
-            navigate('/feed');
+            window.location = '/feed';
             setEmail('');
         }
         setPassword('');
