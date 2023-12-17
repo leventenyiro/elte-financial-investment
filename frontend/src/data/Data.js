@@ -1,10 +1,13 @@
 import { getCookie } from "../utils/getCookie";
 class Data {
+  static url = "https://elte-financial-investment-rest.azurewebsites.net";
 
-  static url = "http://localhost:4000"
-  // static url = "https://elte-financial-investment-api.azurewebsites.net/"
-
-  static authCookieValue = document.cookie.includes('authCookie=') ? document.cookie.split(';').find(cookie => cookie.trim().startsWith('authCookie=')).split('=')[1] : undefined;
+  static authCookieValue = document.cookie.includes("authCookie=")
+    ? document.cookie
+        .split(";")
+        .find((cookie) => cookie.trim().startsWith("authCookie="))
+        .split("=")[1]
+    : undefined;
 
   /*
 
@@ -88,7 +91,7 @@ class Data {
       const responseData = await response.json();
       console.log(
         "Registration successful! Response: " +
-        JSON.stringify(responseData, null, 2)
+          JSON.stringify(responseData, null, 2)
       );
     } catch (error) {
       console.error("Error during user registration:", error.message);
@@ -236,7 +239,7 @@ class Data {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.authCookieValue}`,
+        Authorization: `Bearer ${this.authCookieValue}`,
       },
     });
 
@@ -249,7 +252,7 @@ class Data {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.authCookieValue}`,
+        Authorization: `Bearer ${this.authCookieValue}`,
       },
     });
 
@@ -279,7 +282,7 @@ class Data {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${this.authCookieValue}`,
+        Authorization: `Bearer ${this.authCookieValue}`,
       },
     });
 
@@ -288,17 +291,17 @@ class Data {
   }
 
   static async fetchInvestmentsByUser(user) {
-    const topics = ['crypto', 'fund', 'stock'];
+    const topics = ["crypto", "fund", "stock"];
 
     const investmentsByTopic = {};
 
     const fetchTopicInvestments = async (topic) => {
-      if (user[topic] || topic === 'basics') {
+      if (user[topic] || topic === "basics") {
         const response = await fetch(`${Data.url}/investment/topic/${topic}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${this.authCookieValue}`,
+            Authorization: `Bearer ${this.authCookieValue}`,
           },
         });
 
@@ -321,17 +324,17 @@ class Data {
   }
 
   static async fetchMaterialsByUser(user) {
-    const topics = ['basics', 'crypto', 'fund', 'stock'];
+    const topics = ["basics", "crypto", "fund", "stock"];
 
     const materialsByTopic = {};
 
     const fetchTopicMaterials = async (topic) => {
-      if (user[topic] || topic === 'basics') {
+      if (user[topic] || topic === "basics") {
         const response = await fetch(`${Data.url}/material/topic/${topic}`, {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            "Authorization": `Bearer ${this.authCookieValue}`,
+            Authorization: `Bearer ${this.authCookieValue}`,
           },
         });
 
